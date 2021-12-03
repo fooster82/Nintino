@@ -1,5 +1,7 @@
 import React from 'react'
 
+// this will use django authentication
+
 export function LoginForm() {
     return (
         <div>

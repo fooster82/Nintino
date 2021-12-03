@@ -5,9 +5,20 @@ import * as Pages from './Pages';
 export default function App() {
     return (
         <>
-            <h1>Welcome to Nintino</h1>
-            <Pages.LandingPage />
-            <Pages.LoginPage />
+        <Switch>
+            <Route exact path='/'>
+                <Pages.LandingPage />
+            </Route>
+
+            <Route path='/login'>
+                <Pages.LoginPage />
+            </Route>
+
+            <Route path='/home'>
+                <Pages.Homepage />
+            </Route>
+
+        </Switch>
         </>
     )
 }
