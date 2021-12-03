@@ -7,6 +7,7 @@ export default function App() {
         <>
             <h1>Welcome to Nintino</h1>
             <Pages.LandingPage />
+            <Pages.LoginPage />
         </>
     )
 }
