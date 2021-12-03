@@ -9,7 +9,7 @@ def signup(req):
             form.save()
             username = form.cleaned_data.get('username')
             messages.success(req, f'Welcome, {username}!')
-            return redirect('adoption-index')
+            return redirect('login') #need to change later to another page
     else:
         form = UserSignupForm()
     data = {'form': form}
