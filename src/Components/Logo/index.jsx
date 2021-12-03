@@ -1,9 +1,9 @@
 import React from 'react'
 
-export function Title() {
+export function Logo() {
     return (
         <div>
-            <h1 id="title" >Nintino</h1>
+            <p>"the logo will go here"</p>
         </div>
     )
 }
