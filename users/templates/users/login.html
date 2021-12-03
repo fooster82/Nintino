@@ -4,11 +4,11 @@
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="Sign Up">
+        <input type="submit" value="Login">
     </form>
 
     <span class="helptext">
-        Already have an account?
-        <a href="{% url 'login' %}">Login here</a>
+        Don't yet have an account?
+        <a href="{% url 'signup' %}">Signup here</a>
     </span>
 {% endblock content %}
