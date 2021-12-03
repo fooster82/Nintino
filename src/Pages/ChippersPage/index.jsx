@@ -3,7 +3,7 @@ import "./style.css";
 
 import { Gameboard } from "../../Components";
 
-export default function ChippersPage() {
+export function ChippersPage() {
     return (
         <Gameboard />
     )

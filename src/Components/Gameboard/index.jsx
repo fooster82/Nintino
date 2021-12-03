@@ -1,12 +1,13 @@
 import React from 'react';
 
-import { BoardSquare } from '.';
+import { BoardSquare } from '..';
+import lightSqaure from './assets/light-square.png'
 
-export default function Gameboard() {
+export function Gameboard() {
     return (
         <div id='board'>
             <div className="row-A" className='board-row'>
-                <BoardSquare />
+                <BoardSquare id='A1' imageSource={lightSqaure} />
             </div>
 
             <div className="row-B" className='board-row'>
