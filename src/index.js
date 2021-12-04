@@ -13,5 +13,6 @@ ReactDOM.render(
         {/* </Provider> */}
     </React.StrictMode>,
 
-    window.reactMount,
+    document.getElementById('root')
+    // window.reactMount,
     );

@@ -17,6 +17,9 @@ export default function App() {
             <Route path='/home'>
                 <Pages.Homepage />
             </Route>
+            <Route path='/game'>
+                <Pages.Game />
+            </Route>
 
         </Switch>
         </>
