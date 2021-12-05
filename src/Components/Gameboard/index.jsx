@@ -20,7 +20,7 @@ for(let c=0; c < cols.length; c++) {
 
 console.log(coordinates)
 
-export function Gameboard() {
+export function Gameboard({Red,Blue}) {
     const renderPieces = i => {
         if(i % 2 ==0) {
            
@@ -28,9 +28,15 @@ export function Gameboard() {
                 
                 if(c[0] == 'b' || c[0] == 'd' || c[0] == 'f' || c[0] == 'h') {
                     return <BoardSquare id={c[0]+i} imageSource={lightSquare} />
-                } else {
-                    console.log(c[0]+i)
-                        return  <BoardSquare id={c[0]+i} imageSource={darkSquare} />
+                } else {  
+                    if(Red.includes(c[0]+i)) {
+                        return  <BoardSquare id={c[0]+i} imageSource={redChip} />
+                    }else if(Blue.includes(c[0]+i)){
+                        return  <BoardSquare id={c[0]+i} imageSource={blueChip} />
+                    }else{
+                        return <BoardSquare id={c[0]+i} imageSource={darkSquare} />
+                    }               
+                    
                     }
                     
                 }
@@ -41,8 +47,14 @@ export function Gameboard() {
                     
                     return <BoardSquare id={c[0]+i} imageSource={lightSquare} />
                 } else {
-                    console.log(c[0]+i)
-                    return <BoardSquare id={c[0]+i} imageSource={darkSquare} />
+                    if(Red.includes(c[0]+i)) {
+                        return  <BoardSquare id={c[0]+i} imageSource={redChip} />
+                    }else if(Blue.includes(c[0]+i)){
+                        return  <BoardSquare id={c[0]+i} imageSource={blueChip} />
+                    }else{
+                        return <BoardSquare id={c[0]+i} imageSource={darkSquare} />
+                    }               
+                    
                 }
             })
         }

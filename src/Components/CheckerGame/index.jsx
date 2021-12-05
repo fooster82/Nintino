@@ -33,7 +33,7 @@ export function CheckerGame() {
                 for(let j =0 ; j < coordinates.length ; j ++){
                     if(Red.includes(coordinates[i][j])){
                         console.log(coordinates[i][j]);
-                        let newPiece = document.getElementById(coordinates[i][j]);
+                        let newPiece = document.querySelector(coordinates[i][j]);
                         if(newPiece){
                             newPiece.src=redChip
                         // newPiece = <GamePieces imageSource={redChip} id={coordinates[i][j]}/>
@@ -55,10 +55,9 @@ export function CheckerGame() {
 
     return(
         <div>
-            <input type='image' alt='player piece' src={redChip} disabled className='piece-img' id={4}></input>
-            <Gameboard   />
+            <Gameboard  Red={Red} Blue={Blue} />
             
-            {startGame()}
+            {/* {startGame()} */}
         </div>
         
     )
