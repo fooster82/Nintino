@@ -16,4 +16,5 @@ export function BoardSquare({id, imageSource}) {
             <input onClick={boardClick} type='image' alt='board piece' src={imageSource}  className='board-btn' id={id}></input>
     )
     
+    
 }

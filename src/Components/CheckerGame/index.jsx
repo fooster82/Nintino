@@ -9,26 +9,26 @@ import './style.css';
 
 export function CheckerGame() {
 
-    var GameBoard = React.createClass({
-        getInitialState: function() {
-            return {
-                board: [
-                    ['-','b','-','b','-','b','-','b'],
-                    ['b','-','b','-','b','-','b','-'],
-                    ['-','b','-','b','-','b','-','b'],
-                    ['-','-','-','-','-','-','-','-'],
-                    ['-','-','-','-','-','-','-','-'],
-                    ['r','-','r','-','r','-','r','-'],
-                    ['-','r','-','r','-','r','-','r'],
-                    ['r','-','r','-','r','-','r','-']
-                ],
-                activePlayer: 'r',
-                aiDepthCutoff: 3,
-                count: 0,
-                popShown: false
-            }
-        }
-    })
+    // var GameBoard = React.createClass({
+    //     getInitialState: function() {
+    //         return {
+    //             board: [
+    //                 ['-','b','-','b','-','b','-','b'],
+    //                 ['b','-','b','-','b','-','b','-'],
+    //                 ['-','b','-','b','-','b','-','b'],
+    //                 ['-','-','-','-','-','-','-','-'],
+    //                 ['-','-','-','-','-','-','-','-'],
+    //                 ['r','-','r','-','r','-','r','-'],
+    //                 ['-','r','-','r','-','r','-','r'],
+    //                 ['r','-','r','-','r','-','r','-']
+    //             ],
+    //             activePlayer: 'r',
+    //             aiDepthCutoff: 3,
+    //             count: 0,
+    //             popShown: false
+    //         }
+    //     }
+    // })
 
     const Red = ['a0','c0','e0','g0','b1','d1','f1','h1','a2','c2','e2','g2']
     const Blue=['b5','d5','f5','h5','a6','c6','e6','g6','b7','d7','f7','h7']
