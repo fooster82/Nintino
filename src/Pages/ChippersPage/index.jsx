@@ -6,7 +6,7 @@ import { CheckerGame, Gameboard } from "../../Components";
 export function ChippersPage() {
     return (
         <div>
-            <Gameboard />
+            {/* <Gameboard />s */}
             <CheckerGame />
         </div>
         

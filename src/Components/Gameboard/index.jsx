@@ -2,6 +2,9 @@ import React from 'react';
 import './style.css';
 import { CheckerGame } from '..';
 import { BoardSquare } from '..';
+import redChip from './assets/red.png';
+import blueChip from './assets/blue.png';
+import { GamePieces } from '../GamePieces';
 import lightSquare from './assets/light-square.png';
 import darkSquare from './assets/dark-square.png';
 
@@ -20,20 +23,26 @@ console.log(coordinates)
 export function Gameboard() {
     const renderPieces = i => {
         if(i % 2 ==0) {
+           
             return coordinates[i].map((c) => { 
+                
                 if(c[0] == 'b' || c[0] == 'd' || c[0] == 'f' || c[0] == 'h') {
-                    return <BoardSquare id={c} imageSource={lightSquare} />
+                    return <BoardSquare id={c[0]+i} imageSource={lightSquare} />
                 } else {
-                    return <BoardSquare id={c} imageSource={darkSquare} />
+                    console.log(c[0]+i)
+                        return  <BoardSquare id={c[0]+i} imageSource={darkSquare} />
+                    }
+                    
                 }
-            })
+            )
         } else {
             return coordinates[i].map((c) => { 
                 if(c[0] == 'a' || c[0] == 'c' || c[0] == 'e' || c[0] == 'g') {
-                    console.log(c[0])
-                    return <BoardSquare id={c} imageSource={lightSquare} />
+                    
+                    return <BoardSquare id={c[0]+i} imageSource={lightSquare} />
                 } else {
-                    return <BoardSquare id={c} imageSource={darkSquare} />
+                    console.log(c[0]+i)
+                    return <BoardSquare id={c[0]+i} imageSource={darkSquare} />
                 }
             })
         }
