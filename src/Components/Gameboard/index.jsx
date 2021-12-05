@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.css';
-
+import { CheckerGame } from '..';
 import { BoardSquare } from '..';
 import lightSquare from './assets/light-square.png';
 import darkSquare from './assets/dark-square.png';
@@ -14,6 +14,8 @@ for(let c=0; c < cols.length; c++) {
         coordinates[r][c] = cols[c] + rows[r]
     }
 };  
+
+console.log(coordinates)
 
 export function Gameboard() {
     const renderPieces = i => {
@@ -71,6 +73,7 @@ export function Gameboard() {
                 { renderPieces(0) }
             </div>
         </div>
+        
     )
 }
 

@@ -7,4 +7,5 @@ export { SignUpForm } from './SignUpForm';
 export { CheckerGame } from './CheckerGame';
 export { Gameboard } from "./Gameboard";
 export { BoardSquare } from "./BoardSquare";
+export { GamePieces } from "./GamePieces";
 
