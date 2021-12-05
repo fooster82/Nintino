@@ -18,7 +18,7 @@ export default function App() {
                 <Pages.Homepage />
             </Route>
             <Route path='/game'>
-                <Pages.Game />
+                <Pages.ChippersPage />
             </Route>
 
         </Switch>

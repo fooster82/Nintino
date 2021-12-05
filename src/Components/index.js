@@ -5,3 +5,6 @@ export { LoginButton } from './LoginButton';
 export { LoginForm } from './LoginForm';
 export { SignUpForm } from './SignUpForm';
 export { CheckerGame } from './CheckerGame';
+export { Gameboard } from "./Gameboard";
+export { BoardSquare } from "./BoardSquare";
+
