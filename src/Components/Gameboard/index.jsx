@@ -21,9 +21,13 @@ for(let c=0; c < cols.length; c++) {
 console.log(coordinates)
 
 export function Gameboard({Red,Blue}) {
+
     const renderPieces = i => {
-        if(i % 2 ==0) {
-           
+        let buttons = document.querySelector('.board-btn')
+        if(buttons){
+            console.log("got itt");
+        }
+        if(i % 2 ==0) {     
             return coordinates[i].map((c) => { 
                 
                 if(c[0] == 'b' || c[0] == 'd' || c[0] == 'f' || c[0] == 'h') {
@@ -35,10 +39,8 @@ export function Gameboard({Red,Blue}) {
                         return  <BoardSquare id={c[0]+i} imageSource={blueChip} />
                     }else{
                         return <BoardSquare id={c[0]+i} imageSource={darkSquare} />
-                    }               
-                    
-                    }
-                    
+                    }                                  
+                }                  
                 }
             )
         } else {
@@ -53,12 +55,14 @@ export function Gameboard({Red,Blue}) {
                         return  <BoardSquare id={c[0]+i} imageSource={blueChip} />
                     }else{
                         return <BoardSquare id={c[0]+i} imageSource={darkSquare} />
-                    }               
-                    
+                    }                              
                 }
             })
         }
+        
     }
+
+    
 
     return (
         <div id='board'>

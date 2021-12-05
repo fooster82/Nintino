@@ -4,9 +4,12 @@ import "./style.css";
 import { CheckerGame, Gameboard } from "../../Components";
 
 export function ChippersPage() {
+
+    
+
     return (
         <div>
-            {/* <Gameboard />s */}
+            {/* <Gameboard /> */}
             <CheckerGame />
         </div>
         
