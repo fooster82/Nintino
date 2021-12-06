@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.css';
 
-import { BoardSquare } from '../../../../src/Components';
+import { BoardSquare } from '../BoardSquare';
 import lightSquare from './assets/light-square.png';
 import darkSquare from './assets/dark-square.png';
 
