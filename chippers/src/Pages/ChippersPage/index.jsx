@@ -6,6 +6,7 @@ import { Gameboard, CheckerGame } from "../../Components";
 export function ChippersPage() {
     return (
         <>
+            "Helloo"
             <CheckerGame />
         </>
     )

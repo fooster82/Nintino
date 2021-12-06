@@ -1,7 +1,7 @@
-from django.urls import path
+from django.urls import re_path
 from . import views
 
 urlpatterns = [
-    path('',views.index, name='games-index')
-
+    re_path(r'',views.index, name='games-index'),
+    # path('/chippers',views.chipper, name='games-chipper')
 ]

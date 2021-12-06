@@ -6,10 +6,10 @@ export const App = () =>{
     return (
         <>
         <Switch>
-            <Route exact path='/'>
+            <Route exact path=''>
                 <Pages.Homepage />
             </Route>
-            <Route path='/chippers'>
+            <Route path='chippers/'>
                 <Pages.ChippersPage />
             </Route>
 
