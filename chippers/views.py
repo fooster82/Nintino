@@ -7,3 +7,6 @@ from django.views.generic import TemplateView
 @login_required
 def index(req,*args, **kwargs):
     return render(req,'chippers/index.html')
+
+def welcome(req):
+    return render(req, 'chippers/landingPage.html')

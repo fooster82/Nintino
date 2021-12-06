@@ -1,0 +1,10 @@
+#board {
+    border: 5px solid black;
+    float: left;
+}
+
+.board-btn {
+    height: 40px;
+    width: 40px;
+    vertical-align: middle;
+}
