@@ -34,28 +34,28 @@ const checkMove=(id)=>{
         switch(id[0]){
             case '1' :
                 console.log(id);
-                if((! Red.includes('2'+(parseInt(id[1])+1))) && (! Blue.includes('2'+(parseInt(id[1])+1))) && ( id[1] !== 8)){
-                    availableMoves.push('2'+(parseInt(id[1])+1))
+                if (rightMovePiece(id,1 , '8')){
+                    availableMoves.push(rightMovePiece(id,1 , '8'))
                     console.log(availableMoves);
                     return availableMoves;
-                }      
+                }    
                 break      
             case '8':
                 console.log(id);
-                if((! Red.includes('7'+(parseInt(id[1])+1)) )&& (! Blue.includes('7'+(parseInt(id[1])+1))) && ( id[1] !== 8)){
-                    availableMoves.push('7'+(parseInt(id[1])+1))
+                if (leftmMovePiece(id,1 , '8')){
+                    availableMoves.push(leftmMovePiece(id,1 , '8'))
                     console.log(availableMoves);
                     return availableMoves;
                 }   
                 break
             default:
-                if((! Red.includes((parseInt(id[0])-1).toString()+(parseInt(id[1])+1)) )&& (! Blue.includes((parseInt(id[0])-1).toString()+(parseInt(id[1])+1))) && ( id[1] !== 8)){
-                    console.log((parseInt(id[0])-1).toString()+(parseInt(id[1])+1));
-                    availableMoves.push((parseInt(id[0])-1).toString()+(parseInt(id[1])+1))  
+                if(rightMovePiece(id,1 , '8')){
+                    console.log(rightMovePiece(id,1 , '8'));
+                    availableMoves.push(rightMovePiece(id,1 , '8'))  
                 } 
-                if((! Red.includes((parseInt(id[0])+1).toString()+(parseInt(id[1])+1)) )&& (! Blue.includes((parseInt(id[0])+1).toString()+(parseInt(id[1])+1))) && ( id[1] !== 8)){
-                    console.log(((parseInt(id[0]))+1).toString()+(parseInt(id[1])+1));
-                    availableMoves.push(((parseInt(id[0]))+1).toString()+(parseInt(id[1])+1))                      
+                if(leftmMovePiece(id,1 , '8')){
+                    console.log(leftmMovePiece(id,1 , '8'));
+                    availableMoves.push(leftmMovePiece(id,1 , '8'))                      
                 } 
                 console.log(availableMoves);
                 return availableMoves;  
@@ -65,34 +65,50 @@ const checkMove=(id)=>{
         switch(id[0]){
             case '1' :
                 console.log(id);
-                if((! Blue.includes('7'+(parseInt(id[1])-1))) && (! Red.includes('7'+(parseInt(id[1])-1))) && (id[1] !== 1)){
-                    availableMoves.push('7'+(parseInt(id[1])-1))
+                if (rightMovePiece(id, -1 , '8')){
+                    availableMoves.push(rightMovePiece(id, -1 , '8'))
                     console.log(availableMoves);
                     return availableMoves;
-                }
-                break            
+                }    
+                break      
             case '8':
                 console.log(id);
-                if((! Blue.includes('7'+(parseInt(id[1])-1))) &&   (! Red.includes('7'+(parseInt(id[1])-1)))  && (id[1] !== 1)){
-                    availableMoves.push('7'+(parseInt(id[1])-1))
+                if (leftmMovePiece(id, -1 , '8')){
+                    availableMoves.push(leftmMovePiece(id, -1 , '8'))
                     console.log(availableMoves);
                     return availableMoves;
                 } 
                 break
             default:
-                if((! Red.includes((parseInt(id[0])-1).toString()+(parseInt(id[1])-1)) )&& (! Blue.includes((parseInt(id[0])-1).toString()+(parseInt(id[1])-1))) && ( id[1] !== 1)){
-                    console.log((parseInt(id[0])-1).toString()+(parseInt(id[1])-1));
-                    availableMoves.push((parseInt(id[0])-1).toString()+(parseInt(id[1])-1))  
+                if(rightMovePiece(id, -1 , '8')){
+                    console.log(rightMovePiece(id, -1 , '8'));
+                    availableMoves.push(rightMovePiece(id,1 , '8'))  
                 } 
-                if((! Red.includes((parseInt(id[0])+1).toString()+(parseInt(id[1])-1)) )&& (! Blue.includes((parseInt(id[0])+1).toString()+(parseInt(id[1])-1))) && ( id[1] !== 1)){
-                    console.log(((parseInt(id[0]))+1).toString()+(parseInt(id[1])-1));
-                    availableMoves.push(((parseInt(id[0]))+1).toString()+(parseInt(id[1])-1))                      
+                if(leftmMovePiece(id, -1 , '8')){
+                    console.log(leftmMovePiece(id, -1 , '8'));
+                    availableMoves.push(leftmMovePiece(id, -1 , '8'))                      
                 } 
                 console.log(availableMoves);
                 return availableMoves;  
         }
     }
 
+}
+
+const leftmMovePiece= (id , num , end ) => {
+    if((! Red.includes((parseInt(id[0])-1).toString()+(parseInt(id[1])+num))) && (! Blue.includes((parseInt(id[0])-1).toString()+(parseInt(id[1])+num))) && ( id[1] !== end)){
+        return (parseInt(id[0])-1).toString()+(parseInt(id[1])+num)
+    }else{
+        return null
+    }
+}
+
+const rightMovePiece= (id , num , end ) => {
+    if((! Red.includes((parseInt(id[0])+1).toString()+(parseInt(id[1])+num))) && (! Blue.includes((parseInt(id[0])+1).toString()+(parseInt(id[1])+num))) && ( id[1] !== end)){
+        return (parseInt(id[0])+1).toString()+(parseInt(id[1])+num)
+    }else{
+        return null
+    }
 }
 
 export function CheckerGame() {
