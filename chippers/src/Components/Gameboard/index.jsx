@@ -30,13 +30,13 @@ export function Gameboard({Red,Blue}) {
                 if(c[0] == 'b' || c[0] == 'd' || c[0] == 'f' || c[0] == 'h') {
                     return <BoardSquare id={c} imageSource={lightSquare} />
                 } else {  
-                    // if(Red.includes(c)) {
-                    //     return  <BoardSquare id={c} imageSource={redChip} />
-                    // }else if(Blue.includes(c)){
-                    //     return  <BoardSquare id={c} imageSource={blueChip} />
-                    // }else{
+                    if(Red.includes(c)) {
+                        return  <BoardSquare id={c} imageSource={redChip} />
+                    }else if(Blue.includes(c)){
+                        return  <BoardSquare id={c} imageSource={blueChip} />
+                    }else{
                         return <BoardSquare id={c} imageSource={darkSquare} />
-                    // }                                  
+                    }                                  
                 }                  
                 }
             )
@@ -46,13 +46,13 @@ export function Gameboard({Red,Blue}) {
                     
                     return <BoardSquare id={c} imageSource={lightSquare} />
                 } else {
-                    // if(Red.includes(c)) {
-                    //     return  <BoardSquare id={c} imageSource={redChip} />
-                    // }else if(Blue.includes(c)){
-                    //     return  <BoardSquare id={c} imageSource={blueChip} />
-                    // }else{
+                    if(Red.includes(c)) {
+                        return  <BoardSquare id={c} imageSource={redChip} />
+                    }else if(Blue.includes(c)){
+                        return  <BoardSquare id={c} imageSource={blueChip} />
+                    }else{
                         return <BoardSquare id={c} imageSource={darkSquare} />
-                    // }                              
+                    }                              
                 }
             })
         }

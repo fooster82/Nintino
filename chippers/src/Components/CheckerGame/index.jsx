@@ -23,25 +23,35 @@ const coordinates=[
 export function checkPiece(id) {
 
     if( Red.includes(id) || Blue.includes(id) ){     
-        return true;
+        checkMove(id);
     }else{
         console.log("flase");
     }
 }
 
+const checkMove=(id)=>{
+    if( id in Red || id in Blue){
+        console.log(id[0]);
+        if(id[0] === 'a'){
+            console.log(coordinates['b'+(parseInt(coordinate[1])+1)]);
+            if( coordinates['b'+(parseInt(coordinate[1])+1)] ){
+                let x='b'+(parseInt(coordinate[1])+1)
+            }
+        }
+    }
+
+}
+
 export function CheckerGame() {
-    let cols= 'abcdefgh'
 
     const playerPieces= i => {
         console.log(coordinates);
         return coordinates[i].map((c) => { 
             if( Red.includes(c) ) {
-                console.log("red");
                 return pieceImg(c,redChip)
             } else if(Blue.includes(c)){
                 pieceImg(c,blueChip)
             }
-            // <BoardSquare id={c} imageSource={lightSquare} />          
         })
     }
      
@@ -49,36 +59,14 @@ export function CheckerGame() {
     const pieceImg = (id , img) => {
         return <GamePiece id={id} imageSource={img} />
     }
+
  
-
-    // const checkPiece = (id) => {
-    //     if( id in Red || id in Blue){
-    //         console.log("True");
-    //         return true;
-    //     }
-    // }
-
-    // const possibleMoves= (coordinate , player) => {
-    //     if( player === 'red'){
-    //         if(coordinate[0] === 'a'){
-    //             if( coordinates['b'+(parseInt(coordinate[1])+1)] === 'empty' ){
-    //                 'b'+(parseInt(coordinate[1])+1)
-    //             }
-    //         }
-    //     }
-
-    // }
 
     return(
         <div>
             <Gameboard  Red={Red} Blue={Blue} />
-            {playerPieces(0)}
-            
+            {/* {playerPieces(0)}           */}
             {/* {startGame()} */}
-        </div>
-        
+        </div>    
     )
-
-     
-
 }
