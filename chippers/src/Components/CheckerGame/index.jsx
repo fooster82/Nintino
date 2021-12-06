@@ -7,8 +7,10 @@ import './style.css';
 
 // this will use django authentication
           
-const Red = ['11','31','51','71','22','42','62','82','13','33','53','73']
-const Blue=['26','46','66','86','17','37','57','77','28','48','68','88']
+const Red = ['11','31','51','71','22','42','62','82','13','33','53','75']
+// const Blue=['26','46','66','86','17','37','57','77','28','48','68','88']
+// const Red = ['11','31','51','71','22','42','62','82','13','33','53','73']
+const Blue=['24','46','66','86','17','37','57','77','28','48','68','88']
 const coordinates=[
         ['11', '21', '31', '41', '51', '61', '71', '71'],
         ['12', '22', '32', '42', '52', '62', '72', '72'],
@@ -38,6 +40,11 @@ const checkMove=(id)=>{
                     availableMoves.push(rightMovePiece(id,1 , '8'))
                     console.log(availableMoves);
                     return movePiece('Red', id ,availableMoves);
+                }else if(Blue.includes((parseInt(id[0])+1).toString()+(parseInt(id[1])+1))){
+                    console.log('getting here');
+                    rightJump(id , 2 , 8)
+                    availableMoves.push(rightJump(id , 2 , 8))
+                    console.log(availableMoves);
                 }    
                 break      
             case '8':
@@ -46,7 +53,11 @@ const checkMove=(id)=>{
                     availableMoves.push(leftmMovePiece(id,1 , '8'))
                     console.log(availableMoves);
                     return movePiece('Red', id ,availableMoves);
-                }   
+                }else if(Blue.includes((parseInt(id[0])-1).toString()+(parseInt(id[1])+1))){
+                    leftJump(id , 2 , 8)
+                    availableMoves.push(leftJump(id , 2 , 8))
+                    console.log(availableMoves);
+                } 
                 break
             default:
                 if(rightMovePiece(id,1 , '8')){
@@ -69,7 +80,12 @@ const checkMove=(id)=>{
                     availableMoves.push(rightMovePiece(id, -1 , '1'))
                     console.log(availableMoves);
                     return movePiece('Blue' ,id ,availableMoves);
-                }    
+                }else if(Red.includes((parseInt(id[0])+1).toString()+(parseInt(id[1])-1))){
+                    console.log('getting here');
+                    rightJump(id , -2 , 1)
+                    availableMoves.push(rightJump(id , -2 , 1))
+                    console.log(availableMoves);
+                }   
                 break      
             case '8':
                 console.log(id);
@@ -77,7 +93,12 @@ const checkMove=(id)=>{
                     availableMoves.push(leftmMovePiece(id, -1 , '1'))
                     console.log(availableMoves);
                     return movePiece('Blue', id ,availableMoves);
-                } 
+                }else if(Red.includes((parseInt(id[0])-1).toString()+(parseInt(id[1])-1))){
+                    console.log('getting here');
+                    leftJump(id , -2 , 1)
+                    availableMoves.push(leftJump(id , -2 , 1))
+                    console.log(availableMoves);
+                }  
                 break
             default:
                 if(rightMovePiece(id, -1 , '1')){
@@ -105,12 +126,34 @@ const leftmMovePiece= (id , num , end ) => {
     }
 }
 
-const rightMovePiece= (id , num , end ) => {
+const rightMovePiece = (id , num , end ) => {
     if((! Red.includes((parseInt(id[0])+1).toString()+(parseInt(id[1])+num))) && (! Blue.includes((parseInt(id[0])+1).toString()+(parseInt(id[1])+num))) && ( id[1] !== end)){
         return (parseInt(id[0])+1).toString()+(parseInt(id[1])+num)
     }else{
         return null
     }
+}
+
+const leftJump = (id , num , end ) => {
+    
+    // if(parseInt(id[1])+ 2 <=  end){
+    if(end){
+        console.log('getting');
+        if((! Red.includes((parseInt(id[0])-2).toString()+(parseInt(id[1])+num))) && (! Blue.includes((parseInt(id[0])-2).toString()+(parseInt(id[1])+num)))){
+            console.log(' here');
+            return (parseInt(id[0])-2).toString()+(parseInt(id[1])+num)
+        }
+    }
+    return null
+}
+
+const rightJump = (id , num , end ) => {
+    if(parseInt(id[1])+ 2 <=  end){
+        if((! Red.includes((parseInt(id[0])+2).toString()+(parseInt(id[1])+num))) && (! Blue.includes((parseInt(id[0])+2).toString()+(parseInt(id[1])+num)))){
+            return (parseInt(id[0])+2).toString()+(parseInt(id[1])+num)
+        }
+    }
+    return null
 }
 
 const movePiece = (colour ,id,availableMoves) => {
