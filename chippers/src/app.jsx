@@ -7,14 +7,6 @@ export const App = () =>{
         <>
         <Switch>
             <Route exact path=''>
-                <Pages.LandingPage />
-            </Route>
-
-            <Route path='/login'>
-                <Pages.LoginPage />
-            </Route>
-
-            <Route path='/home'>
                 <Pages.Homepage />
             </Route>
 
