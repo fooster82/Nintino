@@ -1,10 +1,11 @@
 import React from 'react';
 import './style.css';
-import { CheckerGame } from '..';
+import {  CheckerGame } from '..';
 import { BoardSquare } from '..';
 import redChip from './assets/red.png';
 import blueChip from './assets/blue.png';
-import { GamePiece } from '../GamePiece';
+import { RedPiece } from '../RedPiece';
+import { BluePiece } from '../BluePiece';
 import lightSquare from './assets/light-square.png';
 import darkSquare from './assets/dark-square.png';
 
@@ -22,7 +23,6 @@ for(let c=0; c < cols.length; c++) {
 export function Gameboard({Red,Blue}) {
 
     const renderPieces = i => {
-        let buttons = document.querySelector('.board-btn')
         
         if(i % 2 ==0) {     
             return coordinates[i].map((c) => { 
@@ -31,9 +31,9 @@ export function Gameboard({Red,Blue}) {
                     return <BoardSquare id={c} imageSource={lightSquare} />
                 } else {  
                     if(Red.includes(c)) {
-                        return  <BoardSquare id={c} imageSource={redChip} />
+                        return  <RedPiece id={c} imageSource={redChip} />
                     }else if(Blue.includes(c)){
-                        return  <BoardSquare id={c} imageSource={blueChip} />
+                        return  <BluePiece id={c} imageSource={blueChip} />
                     }else{
                         return <BoardSquare id={c} imageSource={darkSquare} />
                     }                                  
@@ -44,12 +44,12 @@ export function Gameboard({Red,Blue}) {
             return coordinates[i].map((c) => { 
                 if(c[0] == '1' || c[0] == '3' || c[0] == '5' || c[0] == '7') {
                     
-                    return <BoardSquare id={c} imageSource={lightSquare} />
+                    return <BoardSquare id={c}  imageSource={lightSquare} />
                 } else {
                     if(Red.includes(c)) {
-                        return  <BoardSquare id={c} imageSource={redChip} />
+                        return  <RedPiece id={c} imageSource={redChip} />
                     }else if(Blue.includes(c)){
-                        return  <BoardSquare id={c} imageSource={blueChip} />
+                        return  <BluePiece id={c} imageSource={blueChip} />
                     }else{
                         return <BoardSquare id={c} imageSource={darkSquare} />
                     }                              

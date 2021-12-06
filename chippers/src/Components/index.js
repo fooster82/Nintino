@@ -5,3 +5,5 @@ export { Logo } from './Logo';
 export { SignUpButton } from './SignUpButton';
 export { LoginButton } from './LoginButton';
 export { CheckerGame } from "./CheckerGame";
+export { BluePiece } from "./BluePiece"
+export { RedPiece } from "./RedPiece"

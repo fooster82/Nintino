@@ -1,12 +1,12 @@
 import React, {useRef} from 'react';
 import redChip from './assets/red.png';
 import blueChip from './assets/blue.png';
-import { GamePiece } from '../GamePiece';
+// import { GamePiece } from '../RedPiece';
 import { Gameboard } from '../Gameboard';
 import './style.css';
 
 // this will use django authentication
-
+          
 const Red = ['11','31','51','71','22','42','62','82','13','33','53','73']
 const Blue=['26','46','66','86','17','37','57','77','28','48','68','88']
 const coordinates=[
@@ -17,7 +17,7 @@ const coordinates=[
         ['15', '25', '35', '45', '55', '65', '75', '75'],
         ['16', '26', '36', '46', '56', '66', '76', '76'],
         ['17', '27', '37', '47', '57', '67', '77', '77'],
-        ['18', '28', '38', '48', '58', '68', '78', '78'],
+        ['18', '28', '38', '48', '58', '68', '78', '88'],
     ]
 
 export function checkPiece(id) {
@@ -27,9 +27,9 @@ export function checkPiece(id) {
         console.log("flase");
     }
 }
-
+let availableMoves;
 const checkMove=(id)=>{
-    const availableMoves=[]
+    availableMoves=[]
     if( Red.includes(id) ){
         switch(id[0]){
             case '1' :
@@ -37,7 +37,7 @@ const checkMove=(id)=>{
                 if (rightMovePiece(id,1 , '8')){
                     availableMoves.push(rightMovePiece(id,1 , '8'))
                     console.log(availableMoves);
-                    return availableMoves;
+                    return movePiece('Red', id ,availableMoves);
                 }    
                 break      
             case '8':
@@ -45,7 +45,7 @@ const checkMove=(id)=>{
                 if (leftmMovePiece(id,1 , '8')){
                     availableMoves.push(leftmMovePiece(id,1 , '8'))
                     console.log(availableMoves);
-                    return availableMoves;
+                    return movePiece('Red', id ,availableMoves);
                 }   
                 break
             default:
@@ -58,38 +58,40 @@ const checkMove=(id)=>{
                     availableMoves.push(leftmMovePiece(id,1 , '8'))                      
                 } 
                 console.log(availableMoves);
-                return availableMoves;  
+                return movePiece('Red' ,id ,availableMoves);  
         }
             
     }else if(Blue.includes(id)){
         switch(id[0]){
             case '1' :
                 console.log(id);
-                if (rightMovePiece(id, -1 , '8')){
-                    availableMoves.push(rightMovePiece(id, -1 , '8'))
+                if (rightMovePiece(id, -1 , '1')){
+                    availableMoves.push(rightMovePiece(id, -1 , '1'))
                     console.log(availableMoves);
-                    return availableMoves;
+                    return movePiece('Blue' ,id ,availableMoves);
                 }    
                 break      
             case '8':
                 console.log(id);
-                if (leftmMovePiece(id, -1 , '8')){
-                    availableMoves.push(leftmMovePiece(id, -1 , '8'))
+                if (leftmMovePiece(id, -1 , '1')){
+                    availableMoves.push(leftmMovePiece(id, -1 , '1'))
                     console.log(availableMoves);
-                    return availableMoves;
+                    return movePiece('Blue', id ,availableMoves);
                 } 
                 break
             default:
-                if(rightMovePiece(id, -1 , '8')){
-                    console.log(rightMovePiece(id, -1 , '8'));
-                    availableMoves.push(rightMovePiece(id,1 , '8'))  
+                if(rightMovePiece(id, -1 , '1')){
+                    console.log("blue right");
+                    console.log(rightMovePiece(id, -1 , '1'));
+                    availableMoves.push(rightMovePiece(id, -1 , '1'))  
                 } 
-                if(leftmMovePiece(id, -1 , '8')){
-                    console.log(leftmMovePiece(id, -1 , '8'));
-                    availableMoves.push(leftmMovePiece(id, -1 , '8'))                      
+                if(leftmMovePiece(id, -1 , '1')){
+                    console.log("blue left");
+                    console.log(leftmMovePiece(id, -1 , '1'));
+                    availableMoves.push(leftmMovePiece(id, -1 , '1'))                      
                 } 
                 console.log(availableMoves);
-                return availableMoves;  
+                return movePiece('Blue', id ,availableMoves);  
         }
     }
 
@@ -108,6 +110,38 @@ const rightMovePiece= (id , num , end ) => {
         return (parseInt(id[0])+1).toString()+(parseInt(id[1])+num)
     }else{
         return null
+    }
+}
+
+const movePiece = (colour ,id,availableMoves) => {
+    let index;
+    if(availableMoves.length){
+            
+        for(let x=0 ; x < availableMoves.length ; x++){
+            console.log(availableMoves[x]);
+            let piece= document.getElementById(availableMoves[x])
+           
+            piece.addEventListener('click', (e) => {  
+                e.preventDefault()
+                if(colour === 'Red'){
+                    console.log(Red);     
+                    piece.id=availableMoves[x]
+                    index=Red.indexOf(id)
+                    Red[index]=availableMoves[x]
+                    console.log(Red);
+                    console.log(piece.id);
+                }else{
+                    console.log(Blue);     
+                    piece.id=availableMoves[x]
+                    index=Blue.indexOf(id)
+                    console.log(index);
+                    Blue[index]=availableMoves[x]
+                    console.log(Blue);
+                    console.log(piece.id);
+                }
+                
+            })
+        }
     }
 }
 
