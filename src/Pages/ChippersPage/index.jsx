@@ -5,7 +5,10 @@ import { CheckerGame, Gameboard } from "../../Components";
 
 export function ChippersPage() {
 
-    
+    let num=document.getElementById('root')
+    if(num){
+        console.log("num.row3");
+    }
 
     return (
         <div>

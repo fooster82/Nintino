@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import redChip from './assets/red.png';
 import blueChip from './assets/blue.png';
 import { GamePieces } from '../GamePieces';
@@ -73,6 +73,8 @@ export function CheckerGame() {
             }
             
     }
+
+    let s= 'a2'.current
 
     // const possibleMoves= (coordinate , player) => {
     //     if( player === 'red'){
