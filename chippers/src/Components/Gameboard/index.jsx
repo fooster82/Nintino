@@ -4,7 +4,7 @@ import { CheckerGame } from '..';
 import { BoardSquare } from '..';
 import redChip from './assets/red.png';
 import blueChip from './assets/blue.png';
-import { GamePieces } from '../GamePieces';
+import { GamePiece } from '../GamePiece';
 import lightSquare from './assets/light-square.png';
 import darkSquare from './assets/dark-square.png';
 
@@ -23,22 +23,20 @@ export function Gameboard({Red,Blue}) {
 
     const renderPieces = i => {
         let buttons = document.querySelector('.board-btn')
-        if(buttons){
-            console.log("got itt");
-        }
+        
         if(i % 2 ==0) {     
             return coordinates[i].map((c) => { 
                 
                 if(c[0] == 'b' || c[0] == 'd' || c[0] == 'f' || c[0] == 'h') {
                     return <BoardSquare id={c} imageSource={lightSquare} />
                 } else {  
-                    if(Red.includes(c)) {
-                        return  <BoardSquare id={c} imageSource={redChip} />
-                    }else if(Blue.includes(c)){
-                        return  <BoardSquare id={c} imageSource={blueChip} />
-                    }else{
+                    // if(Red.includes(c)) {
+                    //     return  <BoardSquare id={c} imageSource={redChip} />
+                    // }else if(Blue.includes(c)){
+                    //     return  <BoardSquare id={c} imageSource={blueChip} />
+                    // }else{
                         return <BoardSquare id={c} imageSource={darkSquare} />
-                    }                                  
+                    // }                                  
                 }                  
                 }
             )
@@ -48,13 +46,13 @@ export function Gameboard({Red,Blue}) {
                     
                     return <BoardSquare id={c} imageSource={lightSquare} />
                 } else {
-                    if(Red.includes(c)) {
-                        return  <BoardSquare id={c} imageSource={redChip} />
-                    }else if(Blue.includes(c)){
-                        return  <BoardSquare id={c} imageSource={blueChip} />
-                    }else{
+                    // if(Red.includes(c)) {
+                    //     return  <BoardSquare id={c} imageSource={redChip} />
+                    // }else if(Blue.includes(c)){
+                    //     return  <BoardSquare id={c} imageSource={blueChip} />
+                    // }else{
                         return <BoardSquare id={c} imageSource={darkSquare} />
-                    }                              
+                    // }                              
                 }
             })
         }

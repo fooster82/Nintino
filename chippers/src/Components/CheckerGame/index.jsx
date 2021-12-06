@@ -1,7 +1,7 @@
 import React, {useRef} from 'react';
 import redChip from './assets/red.png';
 import blueChip from './assets/blue.png';
-import { GamePieces } from '../GamePieces';
+import { GamePiece } from '../GamePiece';
 import { Gameboard } from '../Gameboard';
 import './style.css';
 
@@ -9,11 +9,20 @@ import './style.css';
 
 const Red = ['a1','c1','e1','g1','b2','d2','f2','h2','a3','c3','e3','g3']
 const Blue=['b6','d6','f6','h6','a7','c7','e7','g7','b8','d8','f8','h8']
+const coordinates=[
+        ['a1', 'b1', 'c1', 'd1', 'e1', 'f1', 'g1', 'h1'],
+        ['a2', 'b2', 'c2', 'd2', 'e2', 'f2', 'g2', 'h2'],
+        ['a3', 'b3', 'c3', 'd3', 'e3', 'f3', 'g3', 'h3'],
+        ['a4', 'b4', 'c4', 'd4', 'e4', 'f4', 'g4', 'h4'],
+        ['a5', 'b5', 'c5', 'd5', 'e5', 'f5', 'g5', 'h5'],
+        ['a6', 'b6', 'c6', 'd6', 'e6', 'f6', 'g6', 'h6'],
+        ['a7', 'b7', 'c7', 'd7', 'e7', 'f7', 'g7', 'h7'],
+        ['a8', 'b8', 'c8', 'd8', 'e8', 'f8', 'g8', 'h8'],
+    ]
 
 export function checkPiece(id) {
 
-    if( Red.includes(id) || Blue.includes(id) ){
-        console.log("True");
+    if( Red.includes(id) || Blue.includes(id) ){     
         return true;
     }else{
         console.log("flase");
@@ -21,11 +30,26 @@ export function checkPiece(id) {
 }
 
 export function CheckerGame() {
+    let cols= 'abcdefgh'
 
+    const playerPieces= i => {
+        console.log(coordinates);
+        return coordinates[i].map((c) => { 
+            if( Red.includes(c) ) {
+                console.log("red");
+                return pieceImg(c,redChip)
+            } else if(Blue.includes(c)){
+                pieceImg(c,blueChip)
+            }
+            // <BoardSquare id={c} imageSource={lightSquare} />          
+        })
+    }
+     
 
-    
-
-    
+    const pieceImg = (id , img) => {
+        return <GamePiece id={id} imageSource={img} />
+    }
+ 
 
     // const checkPiece = (id) => {
     //     if( id in Red || id in Blue){
@@ -33,8 +57,6 @@ export function CheckerGame() {
     //         return true;
     //     }
     // }
-
-    
 
     // const possibleMoves= (coordinate , player) => {
     //     if( player === 'red'){
@@ -47,50 +69,10 @@ export function CheckerGame() {
 
     // }
 
-    // const coordinates=[
-    //     ['a0', 'b0', 'c0', 'd0', 'e0', 'f0', 'g0', 'h0'],
-    //     ['a1', 'b1', 'c1', 'd1', 'e1', 'f1', 'g1', 'h1'],
-    //     ['a2', 'b2', 'c2', 'd2', 'e2', 'f2', 'g2', 'h2'],
-    //     ['a3', 'b3', 'c3', 'd3', 'e3', 'f3', 'g3', 'h3'],
-    //     ['a4', 'b4', 'c4', 'd4', 'e4', 'f4', 'g4', 'h4'],
-    //     ['a5', 'b5', 'c5', 'd5', 'e5', 'f5', 'g5', 'h5'],
-    //     ['a6', 'b6', 'c6', 'd6', 'e6', 'f6', 'g6', 'h6'],
-    //     ['a7', 'b7', 'c7', 'd7', 'e7', 'f7', 'g7', 'h7']
-    // ]
-
-    // console.log(coordinates[0][0]);
-    // console.log(Red.includes(coordinates[0][1]));
-
-    // const startGame = () => {
-
-    //         for(let i =0 ; i < coordinates.length ; i ++){
-            
-    //             for(let j =0 ; j < coordinates.length ; j ++){
-    //                 if(Red.includes(coordinates[i][j])){
-                        
-    //                     let newPiece = document.getElementById('board');
-    //                     if(newPiece){
-    //                         newPiece.src=redChip
-    //                     // newPiece = <GamePieces imageSource={redChip} id={coordinates[i][j]}/>
-                            
-    //                     }else{
-    //                         continue;
-    //                     }
-                        
-    //                 }else if(Blue.includes(coordinates[i][j])){
-    //                     <GamePieces imageSource={blueChip} id={coordinates[i][j]}/>
-    //                 }else{
-                        
-    //                     continue;
-    //                 }
-    //             }
-    //         }
-            
-    // }
-
     return(
         <div>
             <Gameboard  Red={Red} Blue={Blue} />
+            {playerPieces(0)}
             
             {/* {startGame()} */}
         </div>
