@@ -18,7 +18,6 @@ for(let c=0; c < cols.length; c++) {
     }
 };  
 
-console.log(coordinates)
 
 export function Gameboard({Red,Blue}) {
 
@@ -31,14 +30,14 @@ export function Gameboard({Red,Blue}) {
             return coordinates[i].map((c) => { 
                 
                 if(c[0] == 'b' || c[0] == 'd' || c[0] == 'f' || c[0] == 'h') {
-                    return <BoardSquare id={c[0]+i} imageSource={lightSquare} />
+                    return <BoardSquare id={c} imageSource={lightSquare} />
                 } else {  
-                    if(Red.includes(c[0]+i)) {
-                        return  <BoardSquare id={c[0]+i} imageSource={redChip} />
-                    }else if(Blue.includes(c[0]+i)){
-                        return  <BoardSquare id={c[0]+i} imageSource={blueChip} />
+                    if(Red.includes(c)) {
+                        return  <BoardSquare id={c} imageSource={redChip} />
+                    }else if(Blue.includes(c)){
+                        return  <BoardSquare id={c} imageSource={blueChip} />
                     }else{
-                        return <BoardSquare id={c[0]+i} imageSource={darkSquare} />
+                        return <BoardSquare id={c} imageSource={darkSquare} />
                     }                                  
                 }                  
                 }
@@ -47,22 +46,20 @@ export function Gameboard({Red,Blue}) {
             return coordinates[i].map((c) => { 
                 if(c[0] == 'a' || c[0] == 'c' || c[0] == 'e' || c[0] == 'g') {
                     
-                    return <BoardSquare id={c[0]+i} imageSource={lightSquare} />
+                    return <BoardSquare id={c} imageSource={lightSquare} />
                 } else {
-                    if(Red.includes(c[0]+i)) {
-                        return  <BoardSquare id={c[0]+i} imageSource={redChip} />
-                    }else if(Blue.includes(c[0]+i)){
-                        return  <BoardSquare id={c[0]+i} imageSource={blueChip} />
+                    if(Red.includes(c)) {
+                        return  <BoardSquare id={c} imageSource={redChip} />
+                    }else if(Blue.includes(c)){
+                        return  <BoardSquare id={c} imageSource={blueChip} />
                     }else{
-                        return <BoardSquare id={c[0]+i} imageSource={darkSquare} />
+                        return <BoardSquare id={c} imageSource={darkSquare} />
                     }                              
                 }
             })
         }
         
     }
-
-    
 
     return (
         <div id='board'>
