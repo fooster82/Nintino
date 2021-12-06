@@ -25,6 +25,7 @@ SECRET_KEY = 'django-insecure-tg9uh%%z^iq9xgbzwy_ri^*w-=2&^(bj&xkvfa^n4wa@qz(t6w
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+#ADD HOST HERE WHEN YOU POST ME
 ALLOWED_HOSTS = []
 
 
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'channels'
 ]
 
 MIDDLEWARE = [
@@ -70,6 +72,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'Nintino.wsgi.application'
+
+ASGI_APPLICATION = "Nintino.asgi.application"
 
 
 # Database
@@ -127,3 +131,5 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL= 'games-index'
+
+
