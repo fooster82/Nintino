@@ -9,6 +9,10 @@ export const App = () =>{
             <Route exact path=''>
                 <Pages.Homepage />
             </Route>
+            <Route path='chippers/'>
+                <Pages.ChippersPage />
+            </Route>
+
 
         </Switch>
         </>

@@ -25,6 +25,8 @@ export function Header() {
             </div>
     }
 
+    
+
     return (
         <header>
             <Components.Logo />
@@ -32,7 +34,7 @@ export function Header() {
                 <FontAwesomeIcon icon={faBars} onClick={() => setShowMenu(true)} id="hamburger"/>
                 { menu }
             </nav>
-
+            <Link to={"/games/chippers"}>Chippers</Link>
         </header>
     )
 }
