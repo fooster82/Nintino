@@ -8,7 +8,7 @@ import { GamePiece } from '../GamePiece';
 import lightSquare from './assets/light-square.png';
 import darkSquare from './assets/dark-square.png';
 
-let cols = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+let cols = ['1', '2', '3', '4', '5', '6', '7', '8'];
 let rows = ['1', '2', '3', '4', '5', '6', '7', '8'];
 let coordinates = [[], [], [], [], [], [], [], []];
 
@@ -27,7 +27,7 @@ export function Gameboard({Red,Blue}) {
         if(i % 2 ==0) {     
             return coordinates[i].map((c) => { 
                 
-                if(c[0] == 'b' || c[0] == 'd' || c[0] == 'f' || c[0] == 'h') {
+                if(c[0] == '2' || c[0] == '4' || c[0] == '6' || c[0] == '8') {
                     return <BoardSquare id={c} imageSource={lightSquare} />
                 } else {  
                     if(Red.includes(c)) {
@@ -42,7 +42,7 @@ export function Gameboard({Red,Blue}) {
             )
         } else {
             return coordinates[i].map((c) => { 
-                if(c[0] == 'a' || c[0] == 'c' || c[0] == 'e' || c[0] == 'g') {
+                if(c[0] == '1' || c[0] == '3' || c[0] == '5' || c[0] == '7') {
                     
                     return <BoardSquare id={c} imageSource={lightSquare} />
                 } else {

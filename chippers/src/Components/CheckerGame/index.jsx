@@ -7,21 +7,20 @@ import './style.css';
 
 // this will use django authentication
 
-const Red = ['a1','c1','e1','g1','b2','d2','f2','h2','a3','c3','e3','g3']
-const Blue=['b6','d6','f6','h6','a7','c7','e7','g7','b8','d8','f8','h8']
+const Red = ['11','31','51','71','22','42','62','82','13','33','53','73']
+const Blue=['26','46','66','86','17','37','57','77','28','48','68','88']
 const coordinates=[
-        ['a1', 'b1', 'c1', 'd1', 'e1', 'f1', 'g1', 'h1'],
-        ['a2', 'b2', 'c2', 'd2', 'e2', 'f2', 'g2', 'h2'],
-        ['a3', 'b3', 'c3', 'd3', 'e3', 'f3', 'g3', 'h3'],
-        ['a4', 'b4', 'c4', 'd4', 'e4', 'f4', 'g4', 'h4'],
-        ['a5', 'b5', 'c5', 'd5', 'e5', 'f5', 'g5', 'h5'],
-        ['a6', 'b6', 'c6', 'd6', 'e6', 'f6', 'g6', 'h6'],
-        ['a7', 'b7', 'c7', 'd7', 'e7', 'f7', 'g7', 'h7'],
-        ['a8', 'b8', 'c8', 'd8', 'e8', 'f8', 'g8', 'h8'],
+        ['11', '21', '31', '41', '51', '61', '71', '71'],
+        ['12', '22', '32', '42', '52', '62', '72', '72'],
+        ['13', '23', '33', '43', '53', '63', '73', '73'],
+        ['14', '24', '34', '44', '54', '64', '74', '74'],
+        ['15', '25', '35', '45', '55', '65', '75', '75'],
+        ['16', '26', '36', '46', '56', '66', '76', '76'],
+        ['17', '27', '37', '47', '57', '67', '77', '77'],
+        ['18', '28', '38', '48', '58', '68', '78', '78'],
     ]
 
 export function checkPiece(id) {
-
     if( Red.includes(id) || Blue.includes(id) ){     
         checkMove(id);
     }else{
@@ -30,13 +29,67 @@ export function checkPiece(id) {
 }
 
 const checkMove=(id)=>{
-    if( id in Red || id in Blue){
-        console.log(id[0]);
-        if(id[0] === 'a'){
-            console.log(coordinates['b'+(parseInt(coordinate[1])+1)]);
-            if( coordinates['b'+(parseInt(coordinate[1])+1)] ){
-                let x='b'+(parseInt(coordinate[1])+1)
-            }
+    const availableMoves=[]
+    if( Red.includes(id) ){
+        switch(id[0]){
+            case '1' :
+                console.log(id);
+                if((! Red.includes('2'+(parseInt(id[1])+1))) && (! Blue.includes('2'+(parseInt(id[1])+1))) && ( id[1] !== 8)){
+                    availableMoves.push('2'+(parseInt(id[1])+1))
+                    console.log(availableMoves);
+                    return availableMoves;
+                }      
+                break      
+            case '8':
+                console.log(id);
+                if((! Red.includes('7'+(parseInt(id[1])+1)) )&& (! Blue.includes('7'+(parseInt(id[1])+1))) && ( id[1] !== 8)){
+                    availableMoves.push('7'+(parseInt(id[1])+1))
+                    console.log(availableMoves);
+                    return availableMoves;
+                }   
+                break
+            default:
+                if((! Red.includes((parseInt(id[0])-1).toString()+(parseInt(id[1])+1)) )&& (! Blue.includes((parseInt(id[0])-1).toString()+(parseInt(id[1])+1))) && ( id[1] !== 8)){
+                    console.log((parseInt(id[0])-1).toString()+(parseInt(id[1])+1));
+                    availableMoves.push((parseInt(id[0])-1).toString()+(parseInt(id[1])+1))  
+                } 
+                if((! Red.includes((parseInt(id[0])+1).toString()+(parseInt(id[1])+1)) )&& (! Blue.includes((parseInt(id[0])+1).toString()+(parseInt(id[1])+1))) && ( id[1] !== 8)){
+                    console.log(((parseInt(id[0]))+1).toString()+(parseInt(id[1])+1));
+                    availableMoves.push(((parseInt(id[0]))+1).toString()+(parseInt(id[1])+1))                      
+                } 
+                console.log(availableMoves);
+                return availableMoves;  
+        }
+            
+    }else if(Blue.includes(id)){
+        switch(id[0]){
+            case '1' :
+                console.log(id);
+                if((! Blue.includes('7'+(parseInt(id[1])-1))) && (! Red.includes('7'+(parseInt(id[1])-1))) && (id[1] !== 1)){
+                    availableMoves.push('7'+(parseInt(id[1])-1))
+                    console.log(availableMoves);
+                    return availableMoves;
+                }
+                break            
+            case '8':
+                console.log(id);
+                if((! Blue.includes('7'+(parseInt(id[1])-1))) &&   (! Red.includes('7'+(parseInt(id[1])-1)))  && (id[1] !== 1)){
+                    availableMoves.push('7'+(parseInt(id[1])-1))
+                    console.log(availableMoves);
+                    return availableMoves;
+                } 
+                break
+            default:
+                if((! Red.includes((parseInt(id[0])-1).toString()+(parseInt(id[1])-1)) )&& (! Blue.includes((parseInt(id[0])-1).toString()+(parseInt(id[1])-1))) && ( id[1] !== 1)){
+                    console.log((parseInt(id[0])-1).toString()+(parseInt(id[1])-1));
+                    availableMoves.push((parseInt(id[0])-1).toString()+(parseInt(id[1])-1))  
+                } 
+                if((! Red.includes((parseInt(id[0])+1).toString()+(parseInt(id[1])-1)) )&& (! Blue.includes((parseInt(id[0])+1).toString()+(parseInt(id[1])-1))) && ( id[1] !== 1)){
+                    console.log(((parseInt(id[0]))+1).toString()+(parseInt(id[1])-1));
+                    availableMoves.push(((parseInt(id[0]))+1).toString()+(parseInt(id[1])-1))                      
+                } 
+                console.log(availableMoves);
+                return availableMoves;  
         }
     }
 
