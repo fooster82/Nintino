@@ -1,8 +1,8 @@
 import React, {useRef} from 'react';
 import redChip from './assets/red.png';
 import blueChip from './assets/blue.png';
-import { GamePieces } from '../GamePieces';
-import { Gameboard } from '../Gameboard';
+import { GamePieces } from '../../../../src/Components/GamePieces';
+import { Gameboard } from '../../../../src/Components/Gameboard';
 import './style.css';
 
 // this will use django authentication
@@ -74,7 +74,7 @@ export function CheckerGame() {
             
     }
 
-    let s= 'a2'.current
+    
 
     // const possibleMoves= (coordinate , player) => {
     //     if( player === 'red'){

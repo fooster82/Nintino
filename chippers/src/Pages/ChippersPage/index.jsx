@@ -1,7 +1,7 @@
 import React from 'react';
 import "./style.css";
 
-import { CheckerGame, Gameboard } from "../../Components";
+import { CheckerGame, Gameboard } from "../../../../src/Components";
 
 export function ChippersPage() {
 

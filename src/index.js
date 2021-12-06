@@ -13,10 +13,6 @@ ReactDOM.render(
         {/* </Provider> */}
     </React.StrictMode>,
 
-    document.getElementById('root')
-    // window.reactMount,
+    // document.getElementById('root')
+    window.reactMount,
     );
-
-
-
-
