@@ -3,6 +3,7 @@ import * as Components from '../../Components';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+import './header.css';
 
 
 export function Header() {
