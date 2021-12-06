@@ -18,9 +18,9 @@ export function Header() {
                     <FontAwesomeIcon icon={faTimes} onClick={() => setShowMenu(false)} />
                 </button>
                 <table>
-                    <td><Link>Log out</Link></td>
-                    <td><Link>Home</Link></td>
-                    <td><Link>Other links etc</Link></td>
+                    <tr><Link>Log out</Link></tr>
+                    <tr><Link>Home</Link></tr>
+                    <tr><Link>Other links etc</Link></tr>
                 </table>
             </div>
     }
@@ -29,7 +29,7 @@ export function Header() {
         <header>
             <Components.Logo />
             <nav>
-                <FontAwesomeIcon icon={faBars} onClick={() => setShowMenu(true)}/>
+                <FontAwesomeIcon icon={faBars} onClick={() => setShowMenu(true)} id="hamburger"/>
                 { menu }
             </nav>
 
