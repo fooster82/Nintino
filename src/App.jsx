@@ -1,12 +1,24 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { LandingPage } from './Pages/LandingPage';
+import * as Pages from './Pages';
 
 export default function App() {
     return (
         <>
-            <h1>Welcome to Nintino</h1>
-            <LandingPage />
+        <Switch>
+            <Route exact path='/'>
+                <Pages.LandingPage />
+            </Route>
+
+            <Route path='/login'>
+                <Pages.LoginPage />
+            </Route>
+
+            <Route path='/home'>
+                <Pages.Homepage />
+            </Route>
+
+        </Switch>
         </>
     )
 }
