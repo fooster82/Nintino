@@ -6,17 +6,13 @@ export const App = () =>{
     return (
         <>
         <Switch>
-            <Route exact path=''>
-                <Pages.LandingPage />
-            </Route>
-
-            <Route path='/login'>
-                <Pages.LoginPage />
-            </Route>
-
-            <Route path='/home'>
+            <Route exact path='/'>
                 <Pages.Homepage />
             </Route>
+            <Route path='/chippers'>
+                <Pages.ChippersPage />
+            </Route>
+
 
         </Switch>
         </>

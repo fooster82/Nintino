@@ -6,10 +6,9 @@ import * as Pages from "./Pages"
 
 ReactDOM.render(
     <Router>
-        <Pages.LandingPage />
+        <App />
 
     </Router>,
 
-    // <h1>hello</h1>,
     document.getElementById("root")
 );
