@@ -32,8 +32,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'users.apps.UsersConfig',
-    'chippers.apps.ChippersConfig',
+    # 'users.apps.UsersConfig',
+    # 'chippers.apps.ChippersConfig',
+    'nint_users',
+    'chippers',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -131,4 +133,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL= 'games-index'
 
-
+import django_heroku
+django_heroku.settings(locals())

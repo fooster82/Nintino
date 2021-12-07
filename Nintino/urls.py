@@ -1,8 +1,7 @@
-
 from django.contrib import admin
 from django.urls import path
 from django.urls.conf import include
-from users import views
+from nint_users import views
 from django.contrib.auth import views as auth_views
 from chippers import views as chippersViews
 
