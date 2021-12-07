@@ -1,4 +1,6 @@
 #board {
+    display: grid;
+    grid-template-rows: 8;
     border: 5px solid black;
     float: left;
 }
@@ -8,3 +10,9 @@
     width: 40px;
     vertical-align: middle;
 }
+
+.piece-img{
+    z-index: 2;
+}
+
+

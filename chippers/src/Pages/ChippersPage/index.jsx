@@ -1,10 +1,13 @@
 import React from 'react';
 import "./style.css";
 
-import { Gameboard } from "../../Components";
+import { Gameboard, CheckerGame } from "../../Components";
 
 export function ChippersPage() {
     return (
-        <Gameboard />
+        <>
+            "Helloo"
+            <CheckerGame />
+        </>
     )
 }
