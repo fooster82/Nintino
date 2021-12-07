@@ -1,22 +1,3 @@
-<<<<<<< HEAD
-import React, { useRef } from 'react'
-import * as Layout from '../../Layout';
-import { CheckerGame } from "../../Components";
-
-
-
-
-export function Homepage() {
-
-    
-
-    const printID = (id) => {
-        const id_num=useRef(id).current
-        if(id_num){
-            console.log(id_num)
-        }else{
-            console.log("False")
-=======
 import React, {useState, useEffect } from 'react'
 import { useHistory } from 'react-router';
 import * as Layout from '../../Layout';
@@ -74,7 +55,7 @@ export function Homepage() {
                 }
             })
 
->>>>>>> 46b7cd87b0ab30044d5151ac91c0e402d418feb4
+
         }
     }
 
