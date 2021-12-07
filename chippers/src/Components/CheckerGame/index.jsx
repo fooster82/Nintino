@@ -25,8 +25,10 @@ const coordinates=[
 export function checkPiece(id) {
     if( Red.includes(id) || Blue.includes(id) ){     
         checkMove(id);
+        return true;
     }else{
         console.log("flase");
+        return false;
     }
 }
 let availableMoves;

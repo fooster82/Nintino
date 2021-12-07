@@ -3,6 +3,7 @@ import * as Components from '../../Components';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+import './header.css';
 
 
 export function Header() {
@@ -16,12 +17,11 @@ export function Header() {
                 <button id="close-menu">
                     <FontAwesomeIcon icon={faTimes} onClick={() => setShowMenu(false)} />
                 </button>
-                <ul>
-                    <li><Link>Log out</Link></li>
-                    <li><Link>Home</Link></li>
-                    {/* <td><Link to={"/games/chippers"}>Chippers</Link></td> */}
-                    <li><Link>Other links etc</Link></li>
-                </ul>
+                <table>
+                    <tr><Link>Log out</Link></tr>
+                    <tr><Link>Home</Link></tr>
+                    <tr><Link>Other links etc</Link></tr>
+                </table>
             </div>
     }
 
@@ -31,7 +31,7 @@ export function Header() {
         <header>
             <Components.Logo />
             <nav>
-                <FontAwesomeIcon icon={faBars} onClick={() => setShowMenu(true)}/>
+                <FontAwesomeIcon icon={faBars} onClick={() => setShowMenu(true)} id="hamburger"/>
                 { menu }
             </nav>
 
