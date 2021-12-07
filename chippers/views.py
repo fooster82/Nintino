@@ -10,3 +10,6 @@ def index(req,*args, **kwargs):
 
 def welcome(req):
     return render(req, 'chippers/landingPage.html')
+
+# def chipper(req):
+#     return render(req, 'chippers/src/Pages/ChippersPage/index.jsx')

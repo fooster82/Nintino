@@ -55,13 +55,13 @@ export function Homepage() {
                 }
             })
 
+
         }
     }
 
     return (
         <div>
             <Layout.Header />
-
             <div>
                 <form onSubmit={handleSubmit}>
                     <input

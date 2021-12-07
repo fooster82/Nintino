@@ -16,13 +16,16 @@ export function Header() {
                 <button id="close-menu">
                     <FontAwesomeIcon icon={faTimes} onClick={() => setShowMenu(false)} />
                 </button>
-                <table>
-                    <td><Link>Log out</Link></td>
-                    <td><Link>Home</Link></td>
-                    <td><Link>Other links etc</Link></td>
-                </table>
+                <ul>
+                    <li><Link>Log out</Link></li>
+                    <li><Link>Home</Link></li>
+                    {/* <td><Link to={"/games/chippers"}>Chippers</Link></td> */}
+                    <li><Link>Other links etc</Link></li>
+                </ul>
             </div>
     }
+
+    
 
     return (
         <header>
@@ -31,8 +34,9 @@ export function Header() {
                 <FontAwesomeIcon icon={faBars} onClick={() => setShowMenu(true)}/>
                 { menu }
             </nav>
-            <Link to={"chippers"}>Chippers</Link>
 
+            <Link to={"chippers"}>Chippers</Link>
+            
         </header>
     )
 }
