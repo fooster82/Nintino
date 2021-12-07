@@ -31,8 +31,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'users.apps.UsersConfig',
-    'chippers.apps.ChippersConfig',
+    # 'users.apps.UsersConfig',
+    # 'chippers.apps.ChippersConfig',
+    'users',
+    'chippers',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
