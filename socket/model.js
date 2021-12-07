@@ -49,6 +49,7 @@ class Game {
         }
         try{
             let game = this.getRoom(roomName);
+            console.log(`Player trying to join this game ${game}`);
             if (!!game){
                 game.players.push(player);
             }
@@ -102,31 +103,41 @@ class Game {
     }
 
     movePiece(roomName, oldLocation, newLocation){
-        let room = this.getRoom(roomName);
-        let piece = room.pieces.find(piece => piece.location === oldLocation)
-        piece.location = newLocation;
-        let currentplayer = room.currentplayer
-        let players = room.players
-        if (currentplayer === players[0].username){
-            currentplayer = players[1].username
-        } else {
-            currentplayer = players[0].username
+        try{
+            let room = this.getRoom(roomName);
+            let piece = room.pieces.find(piece => piece.location === oldLocation)
+            piece.location = newLocation;
+            let currentplayer = room.currentplayer
+            let players = room.players
+            if (currentplayer === players[0].username){
+                currentplayer = players[1].username
+            } else {
+                currentplayer = players[0].username
+            }
+            return room
+
+        }catch (e){
+            return "Server broken"
         }
-        return room
     }
 
     takePiece(roomName, location){
-        let gameIndex = this.games.findIndex(game => game.room === roomName)
-        let pieceIndex = this.games[gameIndex].pieces.findIndex(piece=> piece.location === location)
-        this.games[gameIndex].pieces.splice(pieceIndex,1)
-        return this.games[gameIndex]
+        try{
+            let gameIndex = this.games.findIndex(game => game.room === roomName)
+            let pieceIndex = this.games[gameIndex].pieces.findIndex(piece=> piece.location === location)
+            this.games[gameIndex].pieces[pieceIndex].alive = false
+            return this.games[gameIndex]
+
+        }catch (e){
+            return
+        }
     }
 
     setColour(roomName){
         let currentplayer = this.getRoom(roomName).currentplayer
         let players = this.getRoom(roomName).players;
-        let coinflip = Math.floor(Math.random*2);
-        console.log(coinflip);
+        let coinflip = Math.floor(Math.random()*2);
+        console.log(`coinflip ${coinflip}`);
         if (coinflip ===0){
             players[0].colour = "red";
             players[1].colour = "blue";
@@ -136,6 +147,7 @@ class Game {
             players[1].colour = "red";
             currentplayer = players[1].username;
         }
+        console.log(`Playerlist with colours ${players[0].username} ${players[0].colour}`);
         return players
     }
 
