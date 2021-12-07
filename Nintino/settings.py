@@ -33,7 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     # 'users.apps.UsersConfig',
     # 'chippers.apps.ChippersConfig',
-    'users',
+    'nint_users',
     'chippers',
     'django.contrib.admin',
     'django.contrib.auth',
