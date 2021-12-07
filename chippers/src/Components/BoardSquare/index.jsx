@@ -5,22 +5,10 @@ export function BoardSquare({id, imageSource}) {
 
     const id_num = useRef(id)
     const racetrack = id_num.current
-    
- 
-    // const check =document.getElementById('b3')
-    if(racetrack){
-
-        console.log("got it");
-    }else{
-        console.log("not working");
-    }
-
-
 
     const clicked = (e) => {
         checkPiece(id);
 
-        console.log(`clicked!!! ${id}`);
     }
 
     return (

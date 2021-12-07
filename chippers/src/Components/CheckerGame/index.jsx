@@ -219,14 +219,13 @@ const removePiece = (colour , id ) => {
         console.log(Blue);
         index=Blue.indexOf(id);
         Blue.splice(index,1);         
-        console.log(Blue.length);
         console.log(Blue)
     }
 }
 
 const movePiece = (colour ,id,availableMoves) => {
     let index;
-    if(availableMoves.length){
+    if(availableMoves.length ){
             
         for(let x=0 ; x < availableMoves.length ; x++){
             console.log(availableMoves[x]);
@@ -235,25 +234,18 @@ const movePiece = (colour ,id,availableMoves) => {
             piece.addEventListener('click', (e) => {  
                 e.preventDefault()
                 if(colour === 'Red'){
-                    console.log(Math.abs(parseInt(id[0]) - parseInt(availableMoves[x][0])) );
                     if( Math.abs(parseInt(id[0]) - parseInt(availableMoves[x][0])) == 2 ){
                         console.log(availableMoves[x]);
-                        console.log(id);
                         let new_id= (parseInt(id[0])+1).toString() + ((parseInt(id[1])+ parseInt(availableMoves[x][1]))/2)
-                        console.log(new_id);
                         removePiece('Blue' ,new_id)
                     }
                     console.log(Red);     
                     piece.id=availableMoves[x]
                     index=Red.indexOf(id)
                     Red[index]=availableMoves[x]
-                    console.log("minus");
-                    
-                     
                     console.log(Red);
                     console.log(piece.id);
                 }else{
-                    console.log(Math.abs(parseInt(id[0]) - parseInt(availableMoves[x][0])) );
                     if( Math.abs(parseInt(id[0]) - parseInt(availableMoves[x][0])) == 2 ){
                         console.log(availableMoves[x]);
                         console.log(id);

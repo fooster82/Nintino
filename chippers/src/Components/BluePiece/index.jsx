@@ -8,7 +8,6 @@ export function BluePiece({ id ,imageSource}){
     const clicked = (e) => {
         checkPiece(id);
 
-        console.log(`clicked!!! ${id}`);
     }
 
     return(

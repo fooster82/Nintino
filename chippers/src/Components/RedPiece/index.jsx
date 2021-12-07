@@ -8,7 +8,6 @@ export function RedPiece({imageSource , id }){
     const clicked = (e) => {
         checkPiece(id);
 
-        console.log(`clicked!!! ${id}`);
     }
 
     return(
