@@ -25,20 +25,24 @@ SECRET_KEY = 'django-insecure-tg9uh%%z^iq9xgbzwy_ri^*w-=2&^(bj&xkvfa^n4wa@qz(t6w
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+#ADD HOST HERE WHEN YOU POST ME
 ALLOWED_HOSTS = []
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'users.apps.UsersConfig',
-    'chippers.apps.ChippersConfig',
+    # 'users.apps.UsersConfig',
+    # 'chippers.apps.ChippersConfig',
+    'nint_users',
+    'chippers',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
 ]
 
 MIDDLEWARE = [
@@ -70,6 +74,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'Nintino.wsgi.application'
+
 
 
 # Database
@@ -127,3 +132,6 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL= 'games-index'
+
+import django_heroku
+django_heroku.settings(locals())

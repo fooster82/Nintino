@@ -1,4 +1,6 @@
-export { LandingPage } from './LandingPage';
-export { LoginPage } from './LoginPage';
-export { SignUpPage } from './SignUpPage';
+
+export { ChippersPage } from "./ChippersPage";
 export { Homepage } from './Homepage';
+export { Game } from './Game';
+export { Lobby } from "./Lobby";
+
