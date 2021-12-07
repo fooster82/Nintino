@@ -84,6 +84,11 @@ io.on("connection", socket => {
         let resp = game.crown(roomName, location)
         io.to(roomName).emit("updatedPieces",resp)
     })
+
+    socket.on("getGameDetails",(roomName)=>{
+        let game = this.getRoom(roomName);
+        return game
+    })
 })
 
 module.exports = server;
