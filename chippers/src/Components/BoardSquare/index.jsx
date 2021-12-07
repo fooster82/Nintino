@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { checkPiece } from '../CheckerGame';
+import { clickPiece } from '../CheckerGame';
 
 export function BoardSquare({id, imageSource}) {
 
@@ -18,7 +18,7 @@ export function BoardSquare({id, imageSource}) {
 
 
     const clicked = (e) => {
-        checkPiece(id);
+        clickPiece(id);
 
         console.log(`clicked!!! ${id}`);
     }
