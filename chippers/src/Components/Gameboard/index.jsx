@@ -21,7 +21,7 @@ for(let c=0; c < cols.length; c++) {
 
 
 export function Gameboard({Red,Blue, checkPiece}) {
-    console.log("im rendering");
+    // console.log("im rendering");
 
     const renderPieces = i => {
         if(i % 2 ==0) {     

@@ -74,17 +74,20 @@ io.on("connection", socket => {
     socket.on("movePiece", (roomName, oldLocation, newLocation) => {
         console.log(`asking piece to move from ${oldLocation} to ${newLocation}`);
         let resp = game.movePiece(roomName, oldLocation, newLocation)
-        io.to(roomName).emit("updatedPieces", resp)
+        rand = Math.random();
+        io.to(roomName).emit("updatedPieces", resp,rand)
     })
 
     socket.on("takePiece", (roomName, location)=>{
         console.log(`Trying to take piece at ${location}`);
         let resp = game.takePiece(roomName, location)
-        io.to(roomName).emit("updatedPieces", resp)
+        rand = Math.random();
+        io.to(roomName).emit("updatedPieces", resp,rand)
     })
 
     socket.on("crown", (roomName, location)=>{
         let resp = game.crown(roomName, location)
+        rand = Math.random();
         io.to(roomName).emit("updatedPieces",resp)
     })
 
@@ -92,7 +95,8 @@ io.on("connection", socket => {
         try{
             let currentGame = game.games.find(game => game.room === roomName)
             console.log(`This is the current game ${currentGame}`);
-            io.to(roomName).emit("updatedPieces", currentGame)
+            rand = Math.random();
+            io.to(roomName).emit("updatedPieces", currentGame,rand)
         } catch (e){
             console.warn(e);
         }

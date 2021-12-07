@@ -9,42 +9,57 @@ import { socket } from "../../socket";
 // this will use django authentication
 
 export function CheckerGame() {
-    // let history = useHistory();
-    const [pieces, setPieces]= useState({red:['11','31','51','71','22','42','62','82','13','33','53','73']})
+    let history = useHistory();
+    const [pieces, setPieces]= useState({red:['11','31','51','71','22','42','62','82','13','33','53','73'], blue:['26','46','66','86','17','37','57','77','28','48','68','88']})
+    const [gameData, setGameData] = useState({})
     let roomName = localStorage.getItem("roomName")
     useEffect(()=>{
         socket.emit("getGameDetails", roomName)
         console.log("asked for game details");
     },[])
     
-    socket.on("updatedPieces", (game)=>{
-        let gamePieces = game.pieces
-        console.log(gamePieces);
-        addCoords(gamePieces)
+    socket.on("updatedPieces", (game,rand)=>{
+        // console.log(`${rand} should not = ${requestID}`);
+        if (game){
+            console.log(game);
+            setGameData(game)
+        }
+            // let gamePieces = game.pieces
+            // console.log(gamePieces);
+            // console.log(`Updated Pieces recieved`);
+            
+        
     })
     
-    const addCoords = (pieces) => {
-        let red = []
-        let blue = []
-        
-        for (let i=0; i<pieces.length; i++){
-            if (pieces[i].alive === true){
-                if(pieces[i].colour ==="red"){
-                    red.push(pieces[i].location)
-                } else {
-                    blue.push(pieces[i].location)
+    useEffect(()=>{
+        const addCoords = (gamePieces) => {
+            let red = []
+            let blue = []
+            console.log(`gamePieces ${gamePieces}`);
+            if (gamePieces){
+    
+                for (let i=0; i<gamePieces.length; i++){
+                    if (gamePieces[i].alive === true){
+                        if(gamePieces[i].colour ==="red"){
+                            red.push(gamePieces[i].location)
+                        } else {
+                            blue.push(gamePieces[i].location)
+                        }
+                    }
                 }
             }
+            // console.log(`This is red: ${red}`);
+    
+            setPieces({red:red,blue:blue})
         }
-        console.log(`This is red: ${red}`);
-
-        // setPieces({red:red})
-    }
+        let gamePieces = gameData.pieces
+        addCoords(gamePieces)
+    },[gameData])
     
     const Red = pieces.red
     // const Blue=['26','46','66','86','17','37','57','77','28','48','68','88']
     // const Red = ['11','31','51','71','22','42','62','82','13','33','53','73']
-    const Blue=['26','46','66','86','17','37','57','77','28','48','68','88']
+    const Blue = pieces.blue
     const coordinates=[
         ['11', '21', '31', '41', '51', '61', '71', '71'],
         ['12', '22', '32', '42', '52', '62', '72', '72'],
@@ -60,7 +75,7 @@ export function CheckerGame() {
         if( Red.includes(id) || Blue.includes(id) ){     
             checkMove(id);
         }else{
-            console.log("flase");
+            console.log("false");
         }
     }
     let availableMoves;
@@ -347,17 +362,17 @@ export function CheckerGame() {
         return <GamePiece id={id} imageSource={img} />
     }
 
-    // const handleClick =() => {
-    //     history.push("/")
-    //     socket.disconnect(true)
-    // }
+    const handleClick =() => {
+        history.push("/")
+        socket.disconnect(true)
+    }
 
     return(
         <div>
             <Gameboard  Red={Red} Blue={Blue} checkPiece={checkPiece}/>
             {/* {playerPieces(0)}           */}
             {/* {startGame()} */}
-            {/* <button onClick={handleClick}></button> */}
+            <button onClick={handleClick}></button>
         </div>    
     )
 }

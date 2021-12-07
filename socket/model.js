@@ -117,7 +117,7 @@ class Game {
             return room
 
         }catch (e){
-            return "Server broken"
+            return null
         }
     }
 
@@ -129,7 +129,7 @@ class Game {
             return this.games[gameIndex]
 
         }catch (e){
-            return
+            return null
         }
     }
 
