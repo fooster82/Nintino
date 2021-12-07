@@ -1,17 +1,51 @@
-import React, { useRef , useEffect} from 'react';
+import React, { useRef , useEffect, useState} from 'react';
 import redChip from './assets/red.png';
 import blueChip from './assets/blue.png';
 // import { GamePiece } from '../RedPiece';
 import { Gameboard } from '../Gameboard';
 import './style.css';
-
+import { useHistory } from "react-router";
+import { socket } from "../../socket";
 // this will use django authentication
-          
-const Red = ['11','31','51','71','22','55','62','82','13','33','53','75']
-// const Blue=['26','46','66','86','17','37','57','77','28','48','68','88']
-// const Red = ['11','31','51','71','22','42','62','82','13','33','53','73']
-const Blue=['24','46','66','86','17','37','57','77','28','48','68','88']
-const coordinates=[
+
+export function CheckerGame() {
+    // let history = useHistory();
+    const [pieces, setPieces]= useState({red:['11','31','51','71','22','42','62','82','13','33','53','73']})
+    let roomName = localStorage.getItem("roomName")
+    useEffect(()=>{
+        socket.emit("getGameDetails", roomName)
+        console.log("asked for game details");
+    },[])
+    
+    socket.on("updatedPieces", (game)=>{
+        let gamePieces = game.pieces
+        console.log(gamePieces);
+        addCoords(gamePieces)
+    })
+    
+    const addCoords = (pieces) => {
+        let red = []
+        let blue = []
+        
+        for (let i=0; i<pieces.length; i++){
+            if (pieces[i].alive === true){
+                if(pieces[i].colour ==="red"){
+                    red.push(pieces[i].location)
+                } else {
+                    blue.push(pieces[i].location)
+                }
+            }
+        }
+        console.log(`This is red: ${red}`);
+
+        // setPieces({red:red})
+    }
+    
+    const Red = pieces.red
+    // const Blue=['26','46','66','86','17','37','57','77','28','48','68','88']
+    // const Red = ['11','31','51','71','22','42','62','82','13','33','53','73']
+    const Blue=['26','46','66','86','17','37','57','77','28','48','68','88']
+    const coordinates=[
         ['11', '21', '31', '41', '51', '61', '71', '71'],
         ['12', '22', '32', '42', '52', '62', '72', '72'],
         ['13', '23', '33', '43', '53', '63', '73', '73'],
@@ -21,261 +55,280 @@ const coordinates=[
         ['17', '27', '37', '47', '57', '67', '77', '77'],
         ['18', '28', '38', '48', '58', '68', '78', '88'],
     ]
-
-export function checkPiece(id) {
-    if( Red.includes(id) || Blue.includes(id) ){     
-        checkMove(id);
-    }else{
-        console.log("flase");
-    }
-}
-let availableMoves;
-const checkMove=(id)=>{
-    availableMoves=[]
-    if( Red.includes(id) ){
-        switch(id[0]){
-            case '1' :
-                console.log(id);
-                if (rightMovePiece(id,1 , '8')){
-                    availableMoves.push(rightMovePiece(id,1 , '8'))
-                    console.log(availableMoves);
-                    return movePiece('Red', id ,availableMoves);
-                }else if(Blue.includes((parseInt(id[0])+1).toString()+(parseInt(id[1])+1))){
-                    if(rightJump(id , 2 , 8)){
-                        availableMoves.push(rightJump(id , 2 , 8))
-                        console.log(availableMoves);
-                        return movePiece('Red', id ,availableMoves);
-                    }
-                    
-                }    
-                break      
-            case '8':
-                console.log(id);
-                if (leftmMovePiece(id,1 , '8')){
-                    availableMoves.push(leftmMovePiece(id,1 , '8'))
-                    console.log(availableMoves);
-                    return movePiece('Red', id ,availableMoves);
-                }else if(Blue.includes((parseInt(id[0])-1).toString()+(parseInt(id[1])+1))){
-                    if(leftJump(id , 2 , 8)){
-                        availableMoves.push(leftJump(id , 2 , 8))
-                        console.log(availableMoves);
-                        return movePiece('Red', id ,availableMoves);
-                    }
-                    
-                } 
-                break
-            default:
-                if(rightMovePiece(id,1 , '8')){
-                    console.log(rightMovePiece(id,1 , '8'));
-                    availableMoves.push(rightMovePiece(id,1 , '8'))  
-                }else if(Blue.includes((parseInt(id[0])+1).toString()+(parseInt(id[1])+1))){
-                    if(rightJump(id , 2 , 8)){
-                        availableMoves.push(rightJump(id , 2 , 8))
-                        console.log(availableMoves);
-                    }
-                    
-                }  
-                if(leftmMovePiece(id,1 , '8')){
-                    console.log(leftmMovePiece(id,1 , '8'));
-                    availableMoves.push(leftmMovePiece(id,1 , '8'))                      
-                }else if(Blue.includes((parseInt(id[0])-1).toString()+(parseInt(id[1])+1))){
-                    if(leftJump(id , 2 , 8)){
-                        availableMoves.push(leftJump(id , 2 , 8))
-                        console.log(availableMoves);
-                    }
-                   
-                } 
-                console.log(availableMoves);
-                return movePiece('Red' ,id ,availableMoves);  
+    
+    const checkPiece=(id)=> {
+        if( Red.includes(id) || Blue.includes(id) ){     
+            checkMove(id);
+        }else{
+            console.log("flase");
         }
-            
-    }else if(Blue.includes(id)){
-        switch(id[0]){
-            case '1' :
-                console.log(id);
-                if (rightMovePiece(id, -1 , '1')){
-                    availableMoves.push(rightMovePiece(id, -1 , '1'))
-                    console.log(availableMoves);
-                    return movePiece('Blue' ,id ,availableMoves);
-                }else if(Red.includes((parseInt(id[0])+1).toString()+(parseInt(id[1])-1))){
-                    console.log('getting here');
-                    if(rightJump(id , -2 , 1)){
-                        availableMoves.push(rightJump(id , -2 , 1))
+    }
+    let availableMoves;
+    const checkMove=(id)=>{
+        availableMoves=[]
+        if( Red.includes(id) ){
+            switch(id[0]){
+                case '1' :
+                    console.log(id);
+                    if (rightMovePiece(id,1 , '8')){
+                        availableMoves.push(rightMovePiece(id,1 , '8'))
                         console.log(availableMoves);
-                    return movePiece('Blue', id ,availableMoves);
-                    }                   
+                        return movePiece('Red', id ,availableMoves);
+                    }else if(Blue.includes((parseInt(id[0])+1).toString()+(parseInt(id[1])+1))){
+                        if(rightJump(id , 2 , 8)){
+                            availableMoves.push(rightJump(id , 2 , 8))
+                            console.log(availableMoves);
+                            return movePiece('Red', id ,availableMoves);
+                        }
+                        
+                    }    
+                    break      
+                case '8':
+                    console.log(id);
+                    if (leftmMovePiece(id,1 , '8')){
+                        availableMoves.push(leftmMovePiece(id,1 , '8'))
+                        console.log(availableMoves);
+                        return movePiece('Red', id ,availableMoves);
+                    }else if(Blue.includes((parseInt(id[0])-1).toString()+(parseInt(id[1])+1))){
+                        if(leftJump(id , 2 , 8)){
+                            availableMoves.push(leftJump(id , 2 , 8))
+                            console.log(availableMoves);
+                            return movePiece('Red', id ,availableMoves);
+                        }
+                        
+                    } 
+                    break
+                default:
+                    if(rightMovePiece(id,1 , '8')){
+                        console.log(rightMovePiece(id,1 , '8'));
+                        availableMoves.push(rightMovePiece(id,1 , '8'))  
+                    }else if(Blue.includes((parseInt(id[0])+1).toString()+(parseInt(id[1])+1))){
+                        if(rightJump(id , 2 , 8)){
+                            availableMoves.push(rightJump(id , 2 , 8))
+                            console.log(availableMoves);
+                        }
+                        
+                    }  
+                    if(leftmMovePiece(id,1 , '8')){
+                        console.log(leftmMovePiece(id,1 , '8'));
+                        availableMoves.push(leftmMovePiece(id,1 , '8'))                      
+                    }else if(Blue.includes((parseInt(id[0])-1).toString()+(parseInt(id[1])+1))){
+                        if(leftJump(id , 2 , 8)){
+                            availableMoves.push(leftJump(id , 2 , 8))
+                            console.log(availableMoves);
+                        }
                     
-                }   
-                break      
-            case '8':
-                console.log(id);
-                if (leftmMovePiece(id, -1 , '1')){
-                    availableMoves.push(leftmMovePiece(id, -1 , '1'))
+                    } 
                     console.log(availableMoves);
-                    return movePiece('Blue', id ,availableMoves);
-                }else if(Red.includes((parseInt(id[0])-1).toString()+(parseInt(id[1])-1))){
-                    console.log('getting here');
-                    if(leftJump(id , -2 , 1)){
-                         availableMoves.push(leftJump(id , -2 , 1))
+                    return movePiece('Red' ,id ,availableMoves);  
+            }
+                
+        }else if(Blue.includes(id)){
+            switch(id[0]){
+                case '1' :
+                    console.log(id);
+                    if (rightMovePiece(id, -1 , '1')){
+                        availableMoves.push(rightMovePiece(id, -1 , '1'))
+                        console.log(availableMoves);
+                        return movePiece('Blue' ,id ,availableMoves);
+                    }else if(Red.includes((parseInt(id[0])+1).toString()+(parseInt(id[1])-1))){
+                        console.log('getting here');
+                        if(rightJump(id , -2 , 1)){
+                            availableMoves.push(rightJump(id , -2 , 1))
+                            console.log(availableMoves);
+                        return movePiece('Blue', id ,availableMoves);
+                        }                   
+                        
+                    }   
+                    break      
+                case '8':
+                    console.log(id);
+                    if (leftmMovePiece(id, -1 , '1')){
+                        availableMoves.push(leftmMovePiece(id, -1 , '1'))
                         console.log(availableMoves);
                         return movePiece('Blue', id ,availableMoves);
-                    }
-                   
-                }  
-                break
-            default:
-                if(rightMovePiece(id, -1 , '1')){
-                    console.log("blue right");
-                    console.log(rightMovePiece(id, -1 , '1'));
-                    availableMoves.push(rightMovePiece(id, -1 , '1'))  
-                } else if(Red.includes((parseInt(id[0])+1).toString()+(parseInt(id[1])-1))){
-                    console.log('getting here');
-                    if(rightJump(id , -2 , 1)){
-                        availableMoves.push(rightJump(id , -2 , 1))
-                        console.log(availableMoves);
-                    }
+                    }else if(Red.includes((parseInt(id[0])-1).toString()+(parseInt(id[1])-1))){
+                        console.log('getting here');
+                        if(leftJump(id , -2 , 1)){
+                            availableMoves.push(leftJump(id , -2 , 1))
+                            console.log(availableMoves);
+                            return movePiece('Blue', id ,availableMoves);
+                        }
                     
-                    
-                } 
+                    }  
+                    break
+                default:
+                    if(rightMovePiece(id, -1 , '1')){
+                        console.log("blue right");
+                        console.log(rightMovePiece(id, -1 , '1'));
+                        availableMoves.push(rightMovePiece(id, -1 , '1'))  
+                    } else if(Red.includes((parseInt(id[0])+1).toString()+(parseInt(id[1])-1))){
+                        console.log('getting here');
+                        if(rightJump(id , -2 , 1)){
+                            availableMoves.push(rightJump(id , -2 , 1))
+                            console.log(availableMoves);
+                        }
+                        
+                        
+                    } 
 
-                if(leftmMovePiece(id, -1 , '1')){
-                    console.log("blue left");
-                    console.log(leftmMovePiece(id, -1 , '1'));
-                    availableMoves.push(leftmMovePiece(id, -1 , '1'))                      
-                }else if(Red.includes((parseInt(id[0])-1).toString()+(parseInt(id[1])-1))){
-                    console.log('getting here');
-                    if(leftJump(id , -2 , 1)){
-                        availableMoves.push(leftJump(id , -2 , 1))
-                        console.log(availableMoves);
-                    }
-                    
-                }  
-                console.log(availableMoves);
-                return movePiece('Blue', id ,availableMoves);  
-        }
-    }
-
-}
-
-const leftmMovePiece= (id , num , end ) => {
-    if((! Red.includes((parseInt(id[0])-1).toString()+(parseInt(id[1])+num))) && (! Blue.includes((parseInt(id[0])-1).toString()+(parseInt(id[1])+num))) ){
-        if(checkBounds((parseInt(id[0])-1).toString()+(parseInt(id[1])+num))){
-            return (parseInt(id[0])-1).toString()+(parseInt(id[1])+num)
-    }
-}}
-
-const rightMovePiece = (id , num , end ) => {
-    if((! Red.includes((parseInt(id[0])+1).toString()+(parseInt(id[1])+num))) && (! Blue.includes((parseInt(id[0])+1).toString()+(parseInt(id[1])+num))) ){
-        if(checkBounds((parseInt(id[0])+1).toString()+(parseInt(id[1])+num))){
-            return (parseInt(id[0])+1).toString()+(parseInt(id[1])+num)
-    }
-}}
-
-const leftJump = (id , num , end) => {
-    if(end){
-        console.log('gettinggg');
-        if((! Red.includes((parseInt(id[0])-2).toString()+(parseInt(id[1])+num))) && (! Blue.includes((parseInt(id[0])-2).toString()+(parseInt(id[1])+num)))){
-            if(checkBounds((parseInt(id[0])-2).toString()+(parseInt(id[1])+num))){
-                return (parseInt(id[0])-2).toString()+(parseInt(id[1])+num)
-        }
-    }
-    
-}}
-
-const rightJump = (id , num , end) => {
-    if(end){
-        if((! Red.includes((parseInt(id[0])+2).toString()+(parseInt(id[1])+num))) && (! Blue.includes((parseInt(id[0])+2).toString()+(parseInt(id[1])+num)))){
-            if(checkBounds((parseInt(id[0])+2).toString()+(parseInt(id[1])+num))){
-                return (parseInt(id[0])+2).toString()+(parseInt(id[1])+num)
+                    if(leftmMovePiece(id, -1 , '1')){
+                        console.log("blue left");
+                        console.log(leftmMovePiece(id, -1 , '1'));
+                        availableMoves.push(leftmMovePiece(id, -1 , '1'))                      
+                    }else if(Red.includes((parseInt(id[0])-1).toString()+(parseInt(id[1])-1))){
+                        console.log('getting here');
+                        if(leftJump(id , -2 , 1)){
+                            availableMoves.push(leftJump(id , -2 , 1))
+                            console.log(availableMoves);
+                        }
+                        
+                    }  
+                    console.log(availableMoves);
+                    return movePiece('Blue', id ,availableMoves);  
             }
-            else{
-                console.log("move not allowed!");
-            }
-            
         }
-    }
-   
-}
 
-const checkBounds = (id) =>{
-    if((parseInt(id[0]) <= 8 && (parseInt(id[1])) <= 8 && (parseInt(id[0])) > 0 && (parseInt(id[1])) > 0)){
-         return true
-    }   
-    else{
-        return false
     }
 
-}
+    const leftmMovePiece= (id , num , end ) => {
+        if((! Red.includes((parseInt(id[0])-1).toString()+(parseInt(id[1])+num))) && (! Blue.includes((parseInt(id[0])-1).toString()+(parseInt(id[1])+num))) ){
+            if(checkBounds((parseInt(id[0])-1).toString()+(parseInt(id[1])+num))){
+                return (parseInt(id[0])-1).toString()+(parseInt(id[1])+num)
+        }
+    }}
 
-const removePiece = (colour , id ) => {
-    let index;
-    if(colour === 'Red'){
-        console.log(Red);
-        index=Red.indexOf(id);
-        Red.splice(index,1);           
-        console.log(Red);
+    const rightMovePiece = (id , num , end ) => {
+        if((! Red.includes((parseInt(id[0])+1).toString()+(parseInt(id[1])+num))) && (! Blue.includes((parseInt(id[0])+1).toString()+(parseInt(id[1])+num))) ){
+            if(checkBounds((parseInt(id[0])+1).toString()+(parseInt(id[1])+num))){
+                return (parseInt(id[0])+1).toString()+(parseInt(id[1])+num)
+        }
+    }}
+
+    const leftJump = (id , num , end) => {
+        if(end){
+            console.log('gettinggg');
+            if((! Red.includes((parseInt(id[0])-2).toString()+(parseInt(id[1])+num))) && (! Blue.includes((parseInt(id[0])-2).toString()+(parseInt(id[1])+num)))){
+                if(checkBounds((parseInt(id[0])-2).toString()+(parseInt(id[1])+num))){
+                    return (parseInt(id[0])-2).toString()+(parseInt(id[1])+num)
+            }
+        }
         
-    }else{
-        console.log(Blue);
-        index=Blue.indexOf(id);
-        Blue.splice(index,1);         
-        console.log(Blue.length);
-        console.log(Blue)
-    }
-}
+    }}
 
-const movePiece = (colour ,id,availableMoves) => {
-    let index;
-    if(availableMoves.length){
-            
-        for(let x=0 ; x < availableMoves.length ; x++){
-            console.log(availableMoves[x]);
-            let piece= document.getElementById(availableMoves[x])
-           
-            piece.addEventListener('click', (e) => {  
-                e.preventDefault()
-                if(colour === 'Red'){
-                    console.log(Math.abs(parseInt(id[0]) - parseInt(availableMoves[x][0])) );
-                    if( Math.abs(parseInt(id[0]) - parseInt(availableMoves[x][0])) == 2 ){
-                        console.log(availableMoves[x]);
-                        console.log(id);
-                        let new_id= (parseInt(id[0])+1).toString() + ((parseInt(id[1])+ parseInt(availableMoves[x][1]))/2)
-                        console.log(new_id);
-                        removePiece('Blue' ,new_id)
-                    }
-                    console.log(Red);     
-                    piece.id=availableMoves[x]
-                    index=Red.indexOf(id)
-                    Red[index]=availableMoves[x]
-                    console.log("minus");
-                    
-                     
-                    console.log(Red);
-                    console.log(piece.id);
-                }else{
-                    console.log(Math.abs(parseInt(id[0]) - parseInt(availableMoves[x][0])) );
-                    if( Math.abs(parseInt(id[0]) - parseInt(availableMoves[x][0])) == 2 ){
-                        console.log(availableMoves[x]);
-                        console.log(id);
-                        let new_id= (parseInt(id[0])-1).toString() + ((parseInt(id[1])+ parseInt(availableMoves[x][1]))/2)
-                        console.log(new_id);
-                        removePiece('Red' ,new_id)
-                    }
-                    console.log(Blue);     
-                    piece.id=availableMoves[x]
-                    index=Blue.indexOf(id)
-                    console.log(index);
-                    Blue[index]=availableMoves[x]                  
-                    console.log(Blue);
-                    console.log(piece.id);
+    const rightJump = (id , num , end) => {
+        if(end){
+            if((! Red.includes((parseInt(id[0])+2).toString()+(parseInt(id[1])+num))) && (! Blue.includes((parseInt(id[0])+2).toString()+(parseInt(id[1])+num)))){
+                if(checkBounds((parseInt(id[0])+2).toString()+(parseInt(id[1])+num))){
+                    return (parseInt(id[0])+2).toString()+(parseInt(id[1])+num)
+                }
+                else{
+                    console.log("move not allowed!");
                 }
                 
-            })
+            }
+        }
+    
+    }
+
+    const checkBounds = (id) =>{
+        if((parseInt(id[0]) <= 8 && (parseInt(id[1])) <= 8 && (parseInt(id[0])) > 0 && (parseInt(id[1])) > 0)){
+            return true
+        }   
+        else{
+            return false
+        }
+
+    }
+
+    const removePiece = async(colour , id ) => {
+        let index;
+        console.log(`trying to take piece at ${id} and my colour was ${colour}`);
+        await socket.emit("takePiece", roomName, id)
+        // if(colour === 'Red'){
+        //     console.log(Red);
+        //     index=Red.indexOf(id);
+        //     Red.splice(index,1);           
+        //     console.log(Red);
+            
+        // }else{
+        //     console.log(Blue);
+        //     index=Blue.indexOf(id);
+        //     Blue.splice(index,1);         
+        //     console.log(Blue.length);
+        //     console.log(Blue)
+        // }
+    }
+
+    const movePiece = async (colour ,id,availableMoves) => {
+        let index;
+        if(availableMoves.length){
+                
+            for(let x=0 ; x < availableMoves.length ; x++){
+                console.log(availableMoves[x]);
+                let piece= document.getElementById(availableMoves[x])
+                piece.style.border = "10px solid green";
+                piece.style.boxSizing = "border-box"
+                piece.addEventListener('click', (e) => {  
+                    e.preventDefault()
+                    if(colour === 'Red'){
+                        console.log(Math.abs(parseInt(id[0]) - parseInt(availableMoves[x][0])) );
+                        if( Math.abs(parseInt(id[0]) - parseInt(availableMoves[x][0])) == 2 ){
+                            // console.log(availableMoves[x]);
+                            // console.log(id);
+                            let location=(((parseInt(id[0]))+parseInt(availableMoves[x][0]))/2).toString() + ((parseInt(id[1])+ parseInt(availableMoves[x][1]))/2)
+                            console.log(location);
+                            let newLocation = availableMoves[x];
+                            // console.log(new_id);
+                            let oldLocation = id;
+                            socket.emit("movePiece", roomName, oldLocation, newLocation)
+                            removePiece('Blue' ,location)
+                        }
+                        // console.log(Red);     
+                        // piece.id=availableMoves[x]
+                        let newLocation = availableMoves[x];
+                        let oldLocation = id;
+                        // index=Red.indexOf(id)
+                        // Red[index]=availableMoves[x]
+                        // console.log("minus");
+                        socket.emit("movePiece", roomName, oldLocation, newLocation)
+                        
+                        // console.log(Red);
+                        // console.log(piece.id);
+                    }else{
+                        console.log(Math.abs(parseInt(id[0]) - parseInt(availableMoves[x][0])) );
+                        if( Math.abs(parseInt(id[0]) - parseInt(availableMoves[x][0])) == 2 ){
+                            // console.log(availableMoves[x]);
+                            // console.log(id);
+                            console.log((parseInt(id[0])-1).toString());
+                            console.log(((parseInt(id[1]))))
+                            console.log(((parseInt(availableMoves[x][1]))/2))
+                            let location=(((parseInt(id[0]))+parseInt(availableMoves[x][0]))/2).toString() + ((parseInt(id[1])+ parseInt(availableMoves[x][1]))/2)
+                            console.log(location);
+                            let newLocation = availableMoves[x];
+                            // console.log(new_id);
+                            let oldLocation = id;
+                            socket.emit("movePiece", roomName, oldLocation, newLocation)
+                            removePiece('Red' , location)
+                        }
+                        // console.log(Blue);     
+                        // piece.id=availableMoves[x]
+                        // index=Blue.indexOf(id)
+                        // console.log(index);
+                        // Blue[index]=availableMoves[x]                  
+                        // console.log(Blue);
+                        // console.log(piece.id);
+                        let newLocation = availableMoves[x];
+                        let oldLocation = id;
+                        socket.emit("movePiece", roomName, oldLocation, newLocation)
+                    }
+                    
+                })
+            }
         }
     }
-}
 
-export function CheckerGame() {
+
 
     const playerPieces= i => {
         console.log(coordinates);
@@ -294,13 +347,17 @@ export function CheckerGame() {
         return <GamePiece id={id} imageSource={img} />
     }
 
- 
+    // const handleClick =() => {
+    //     history.push("/")
+    //     socket.disconnect(true)
+    // }
 
     return(
         <div>
-            <Gameboard  Red={Red} Blue={Blue} />
+            <Gameboard  Red={Red} Blue={Blue} checkPiece={checkPiece}/>
             {/* {playerPieces(0)}           */}
             {/* {startGame()} */}
+            {/* <button onClick={handleClick}></button> */}
         </div>    
     )
 }

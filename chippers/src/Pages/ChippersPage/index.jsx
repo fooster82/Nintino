@@ -1,12 +1,12 @@
 import React from 'react';
 import "./style.css";
 
-import { Gameboard, CheckerGame } from "../../Components";
+import {  CheckerGame } from "../../Components";
 
 export const ChippersPage = () => {
     return (
         <>
-            "Helloo"
+            
             <CheckerGame />
         </>
     )

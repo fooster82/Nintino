@@ -89,10 +89,13 @@ io.on("connection", socket => {
     })
 
     socket.on("getGameDetails",(roomName)=>{
-        let currentGame = game.games.find(game => game.room === roomName)
-        console.log(`This is the current game ${currentGame}`);
-        console.log(`These are the available games ${game.games[0].room}`);
-        io.to(roomName).emit("updatedPieces", currentGame)
+        try{
+            let currentGame = game.games.find(game => game.room === roomName)
+            console.log(`This is the current game ${currentGame}`);
+            io.to(roomName).emit("updatedPieces", currentGame)
+        } catch (e){
+            console.warn(e);
+        }
     })
 })
 
