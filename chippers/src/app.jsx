@@ -17,10 +17,14 @@ export const App = () =>{
                         <Pages.ChippersPage />
                     </Route>
                         
+
+                    <Route path="/lobby">
+                        <Pages.Lobby/>
+                    </Route>
+                
                     <Route>
                         <h1>Not found</h1>
                     </Route>
-                
         
                 </Switch>
             </>

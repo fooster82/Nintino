@@ -8,7 +8,9 @@
     <title>Nintino</title>
     </head>
     <body>
+
         <div id='root'></div>
+        {{ request.user.username|json_script:"user_id" }}
         <script src="{% static "chippers/main.js" %}"></script>
     </body>
 </html>
