@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 class Game(models.Model):
-    gameID =models.PositiveIntegerField(max_length=30)
+    gameID =models.PositiveIntegerField()
     typeOfGame = models.CharField(max_length=30)
     turns = models.PositiveIntegerField(default=0)
     winner = models.PositiveIntegerField(default=0) # 0 for draw, 1 for player 1 , 2 for player 2

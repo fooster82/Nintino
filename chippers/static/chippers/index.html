@@ -8,7 +8,10 @@
     <title>Nintino</title>
     <script defer src="main.js"></script></head>
     <body>
+
         <div id='root'></div>
-        <script src="{% static "chippers/main.js" %}"></script>
+        {{ request.user.username|json_script:"user_id" }}
+        <script src="../../static/chippers/main.js"></script>
+
     </body>
 </html>
