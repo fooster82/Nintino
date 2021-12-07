@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, { useRef , useEffect} from 'react';
 import redChip from './assets/red.png';
 import blueChip from './assets/blue.png';
 // import { GamePiece } from '../RedPiece';
@@ -7,7 +7,7 @@ import './style.css';
 
 // this will use django authentication
           
-const Red = ['11','31','51','71','22','42','62','82','13','33','53','75']
+const Red = ['11','31','51','71','22','55','62','82','13','33','53','75']
 // const Blue=['26','46','66','86','17','37','57','77','28','48','68','88']
 // const Red = ['11','31','51','71','22','42','62','82','13','33','53','73']
 const Blue=['24','46','66','86','17','37','57','77','28','48','68','88']

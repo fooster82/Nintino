@@ -34,7 +34,9 @@ export function Header() {
                 <FontAwesomeIcon icon={faBars} onClick={() => setShowMenu(true)}/>
                 { menu }
             </nav>
-            <Link to={"/games/chippers"}>Chippers</Link>
+
+            <Link to={"chippers"}>Chippers</Link>
+            
         </header>
     )
 }

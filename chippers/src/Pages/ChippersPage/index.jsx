@@ -3,7 +3,7 @@ import "./style.css";
 
 import { Gameboard, CheckerGame } from "../../Components";
 
-export function ChippersPage() {
+export const ChippersPage = () => {
     return (
         <>
             "Helloo"
