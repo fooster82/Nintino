@@ -28,7 +28,7 @@ class Migration(migrations.Migration):
                 ('wins', models.PositiveIntegerField(default=0)),
                 ('loses', models.PositiveIntegerField(default=0)),
                 ('draws', models.PositiveIntegerField(default=0)),
-                ('username', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='users.profile')),
+                ('username', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='nint_users.profile')),
             ],
         ),
     ]
