@@ -14,12 +14,13 @@ const game = new Game();
 io.on("connection", socket => {
     console.log(("connected"));
 
-    let socketID = socket.socketID
-    socket.on("create", (roomName, username, cb) =>{
-        game.addGame(username,roomName);
+    let socketID = socket.id
+    socket.on("create", (roomName, cb) =>{
+        game.addGame(roomName);
         cb({
             message: "game successfully created"
         })
+        console.log(game);
     })
 
     socket.on("joinRoom", (username, roomName, cb)=>{
@@ -32,8 +33,11 @@ io.on("connection", socket => {
                 players: currentGame.players,
                 host: currentGame.host
             })
-
             io.to(roomName).emit("updatedPlayers", currentGame.players)
+            if (currentGame.players.length==2){
+                game.setColour(roomName)
+                io.to(roomName).emit("game-start",true)
+            }
         }
         catch (e){
             console.warn(e);
@@ -50,7 +54,7 @@ io.on("connection", socket => {
             }
             io.to(roomName).emit("updatedPlaters", updatedPlayers)
         } else{
-            console.log(res.message);
+            console.log(resp.message);
         }
     })
 
@@ -63,6 +67,7 @@ io.on("connection", socket => {
         cb({
             roomExists: room
         })
+        console.log(room);
     })
 
     socket.on("movePiece", (roomName, oldLocation, newLocation) => {
@@ -73,6 +78,11 @@ io.on("connection", socket => {
     socket.on("takePiece", (roomName, location)=>{
         let resp = game.takePiece(roomName, location)
         io.to(roomName).emit("updatedPieces", resp)
+    })
+
+    socket.on("crown", (roomName, location)=>{
+        let resp = game.crown(roomName, location)
+        io.to(roomName).emit("updatedPieces",resp)
     })
 })
 
