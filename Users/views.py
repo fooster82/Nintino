@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib import messages
+from django.contrib import messages, admin
 from .forms import UserSignupForm
 
 def signup(req):
