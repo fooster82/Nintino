@@ -62,12 +62,6 @@ export function Homepage() {
     return (
         <div>
             <Layout.Header />
-<<<<<<< HEAD
-            <CheckerGame />
-            {printID('b6')}
-            {printID('a2')}
-=======
-
             <div>
                 <form onSubmit={handleSubmit}>
                     <input
@@ -82,7 +76,6 @@ export function Homepage() {
                 </form>
                 <p className="Message">{message}</p>
             </div>
->>>>>>> 46b7cd87b0ab30044d5151ac91c0e402d418feb4
         </div>
     )
 }
