@@ -233,6 +233,8 @@ export function CheckerGame() {
             checkMove(selectedPiece)
         }
     },[selectedPiece])
+
+    
     const leftmMovePiece= (id , num , end ) => {
         if((! Red.includes((parseInt(id[0])-1).toString()+(parseInt(id[1])+num))) && (! Blue.includes((parseInt(id[0])-1).toString()+(parseInt(id[1])+num))) ){
             if(checkBounds((parseInt(id[0])-1).toString()+(parseInt(id[1])+num))){
@@ -418,16 +420,16 @@ export function CheckerGame() {
 
     return(
         <div>
-            <Gameboard  Red={Red} Blue={Blue} checkPiece={checkPiece}/>
+            <Gameboard  role="gameBoard" Red={Red} Blue={Blue} checkPiece={checkPiece}/>
             {/* {playerPieces(0)}           */}
             {/* {startGame()} */}
-            <button onClick={handleClick}>Return Home</button>
-            <div>
+            <button role="homeButton" onClick={handleClick}>Return Home</button>
+            <div role="playerInfo">
                 <p>Red: {redPlayer} </p>
                 <HandleTurn/>
                 <p>Blue: {bluePlayer} </p>
             </div>
-            <button>Forfeit</button>
+            <button role="forfeit">Forfeit</button>
         </div>    
     )
 }

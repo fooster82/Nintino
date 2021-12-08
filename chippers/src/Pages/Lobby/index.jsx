@@ -24,7 +24,7 @@ export const Lobby=() => {
     })
 
     return (
-        <h1>You're in the lobby</h1>
+        <h1 role="lobby">You're in the lobby</h1>
     )
 
 }

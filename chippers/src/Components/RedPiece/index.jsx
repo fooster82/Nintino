@@ -8,11 +8,10 @@ export function RedPiece({imageSource , id, checkPiece}){
     const clicked = (e) => {
         checkPiece(id);
 
-        console.log(`clicked!!! ${id}`);
     }
 
     return(
-        <input onClick={clicked} ref={id_num} type='image' alt='player piece' src={imageSource}  className='piece-img' id={id}></input>
+        <input role="redPiece" onClick={clicked} ref={id_num} type='image' alt='player piece' src={imageSource}  className='piece-img' id={id}></input>
     )
    
 }

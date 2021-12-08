@@ -14,8 +14,8 @@ export function Header() {
 
     if(showMenu) {
         menu = 
-            <div id="nav-menu">
-                <button id="close-menu">
+            <div id="nav-menu" role="header">
+                <button id="close-menu" role="menu">
                     <FontAwesomeIcon icon={faTimes} onClick={() => setShowMenu(false)} />
                 </button>
                 <ul>
