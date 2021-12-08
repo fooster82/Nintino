@@ -1,7 +1,9 @@
 import React, {useState, useEffect } from 'react'
 import { useHistory } from 'react-router';
+import { Logo } from '../../Components/Logo';
 import * as Layout from '../../Layout';
-import { socket } from '../../socket'
+import { socket } from '../../socket';
+import './style.css';
 
 export function Homepage() {
 
@@ -61,22 +63,43 @@ export function Homepage() {
     }
 
     return (
+<<<<<<< HEAD
         <div role="homepage">
             <Layout.Header />
             <div >
                 <form onSubmit={handleSubmit}>
+=======
+        <div>
+            <div id="logo-container">
+                <Logo />
+            </div>
+
+            <Layout.Header />
+
+            <div id="checkers-container">
+                <h1 id="chippers-title" className='center-text'>Chippers</h1>
+                <h3 className='center-text'>A spin on the classic game of checkers</h3><br />
+                <h4 className="checker-info">• To start a new game, enter the name you would like to give it in the box below and press 'Create Game'.</h4><br />
+                <h4 className="checker-info">• To join an already created game, enter its name into the box below and press 'Join Game'.</h4>
+                <form id="checkers-form" onSubmit={handleSubmit}>
+>>>>>>> c60206ce3d0568dba674ab394aa7b597fe13beed
                     <input
                         type='text' role="gameID"
                         name='gameID' id='gameID' required
                         className="gameID" placeholder="Enter a game ID"
                         value={gameID} onChange={handleInput}
                         maxLength='12'
+                        id="chippers-lobby"
                     />
-                    <input onClick={(e) => setSubmitter(e.target.value)} type="submit" role="join" value="Join Game" />
-                    <input onClick={(e) => setSubmitter(e.target.value)} type="submit" role="create" value="Create Game" />
+                    <div id="btns-container">
+                        <input className="game-btn" onClick={(e) => setSubmitter(e.target.value)} type="submit" role="join" value="Join Game" />
+                        <input className="game-btn" onClick={(e) => setSubmitter(e.target.value)} type="submit" role="create" value="Create Game" />
+                    </div>
                 </form>
                 <p className="Message">{message}</p>
             </div>
+
+            <h4 id="comingsoon">Want a sneak peak at what we have planned for the future? Click <a id="comingsoon-link" href="">here!</a></h4>
         </div>
     )
 }

@@ -1,14 +1,19 @@
 {% extends "users/base.html" %}
-
+{% load static %}
 {% block content %}
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Login">
-    </form>
+    
 
-    <span class="helptext">
-        Don't yet have an account?
-        <a href="{% url 'signup' %}">Signup here</a>
-    </span>
+    <div id="login-form-container">
+        <img id="logo" src="{% static '/chippers/logo.png' %}" alt="nintino logo">
+        
+        <form id="login-form" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Login">
+        </form>
+        <span class="account-checker">
+            Don't have an account yet?
+            <a href="{% url 'signup' %}">Signup here!</a>
+        </span>
+    </div>
 {% endblock content %}

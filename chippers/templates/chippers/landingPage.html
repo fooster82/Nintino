@@ -5,20 +5,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Luckiest+Guy&display=swap" rel="stylesheet">     
+    <link rel="stylesheet" href="../../static/chippers/css/landingPage.css">
+    <link rel="shortcut icon" href="../../static/chippers/favicon.ico">
     <title>Nintino</title>
 </head>
 <body>
-    <div>
-        <img src="../../images/logo.png" alt="nintino logo">
-    </div>
+    <div class="flex-container" id="whole-body-container" >
+        <img id="logo" src="../../static/chippers/logo.png" alt="nintino logo">
+        <p class="simple-text" id="welcome-message">Welcome! Sign-up using the button below to get playing!</p>
+        
+        <div class="flex-container" id="signup-container">
+            <a id="signup-form" href="{% url 'signup' %}">
+                Sign Up!
+            </a>
+        </div>
 
-    <a href="{% url 'signup' %}">
-        Sign Up!
-    </a>
-
-    <div>
-        <p>Already got an account?</p>
-        <a href="{% url 'login' %}">Login!</a>
+        <div id="login-container">
+            <p class="simple-text" id="account-check-statement">Already got an account ?</p>
+            <a id="login-form" href="{% url 'login' %}">Login!</a>
+        </div>
     </div>
 </body>
 </html>

@@ -1,42 +1,60 @@
-body {
-    background-color: green;
+#show {
+    transform: translateY(0);
+}
+  
+#hide {
+    transform: translateY(-100%);  
 }
 
-#nav-menu {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 60%;
-    background-color: rgba(255, 255, 255, 0.6)
+#btn-container {
+    display: flex;
+    justify-content: space-between;
 }
 
-#close-menu {
-    background-color: black;
+#nav-btn-burger, #nav-btn-cross {
+    font-size: 45px;
     color: white;
-    border-radius: 2px;
-    padding: 10px 15px;
-    opacity: 100%;
-    font-size: 2rem;
+    cursor: pointer;
+    z-index: 600;
+    position: fixed;
+    right: 5vw;
+    top: 1vh;
 }
 
-#hamburger {
-    font-size: 5rem;
-    font-weight: bolder;
-    display: block;
+#nav-btn-cross {
+    font-size: 80px;
+    color: red;
+    top: -10px;
+    opacity: 0.5;
 }
 
-#logo {
-    position: absolute;
-    right: 10px;
-    top: 10px;
+#nav-btn-cross:active {
+    opacity: 1;
 }
 
-table {
-    /* border: 1px solid black; */
-    min-width: 100%;
+
+.links-container {
+    background: black;
+    position: fixed;
+    bottom: 0;
+    height: 100vh;
+    width: 100vw;
+    left: 0;
+    transition: 0.5s;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
-tr {
-    height: 5rem;
+.links {
+    color: white;
+    font-size: 40px;
+    text-decoration: none;
+    text-align: center;
+    font-family: 'Architects Daughter';
+}
+
+.links:active {
+    color: red;
 }
