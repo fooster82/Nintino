@@ -13,6 +13,9 @@ export function CheckerGame() {
     const [pieces, setPieces]= useState({red:['11','31','51','71','22','42','62','82','13','33','53','73'], blue:['26','46','66','86','17','37','57','77','28','48','68','88']})
     const [gameData, setGameData] = useState({})
     const [selectedPiece, setSelectedPiece] = useState('')
+    const [redPlayer, setRedPlayer] = useState('')
+    const [bluePlayer, setBluePlayer] = useState('')
+    const [currentTurn, setCurrentTurn] = useState('red')
     const socketID = socket.id
     console.log(socketID);
     let roomName = localStorage.getItem("roomName")
@@ -22,7 +25,12 @@ export function CheckerGame() {
         socket.on("updatedPieces", (game,rand)=>{
             if (game){
                 console.log(game);
-                setGameData(game)
+                setGameData(game);
+                let red = game.players.find(player=> player.colour==='red');
+                let blue = game.players.find(player=> player.colour==='blue');
+                setRedPlayer(red.username);
+                setBluePlayer(blue.username);
+                setCurrentTurn(game.currentplayer)
             }
                 
             
@@ -59,6 +67,15 @@ export function CheckerGame() {
     // const Blue=['26','46','66','86','17','37','57','77','28','48','68','88']
     // const Red = ['11','31','51','71','22','42','62','82','13','33','53','73']
     const Blue = pieces.blue
+    // if (Red.length === 0) {
+    //     let winner = gameData.players.find(player => player.colour === 'red')
+    //     history.push("/winningPage", {colour: "red", winner: winner})
+    // }
+    // if (Blue.length === 0) {
+    //     let winner = gameData.players.find(player => player.colour === 'blue')
+    //     history.push("/winningPage", {colour: "blue", winner: winner})
+    // }
+
     const coordinates=[
         ['11', '21', '31', '41', '51', '61', '71', '71'],
         ['12', '22', '32', '42', '52', '62', '72', '72'],
@@ -292,7 +309,8 @@ export function CheckerGame() {
             for(let x=0 ; x < availableMoves.length ; x++){
                 console.log(availableMoves[x]);
                 let piece= document.getElementById(availableMoves[x])
-                piece.style.border = "10px solid green";
+                piece.style.border = "5px solid green";
+                setTimeout(()=>{piece.style.border = "0px"},3000)
                 piece.style.boxSizing = "border-box"
                 piece.addEventListener('click', function handleClick(e){  
                     e.preventDefault()
@@ -385,12 +403,31 @@ export function CheckerGame() {
         socket.disconnect(true)
     }
 
+    const HandleTurn =() => {
+        try{
+            const player = gameData.players.find(player=> player.socketID === socketID); 
+            if(player.colour===currentTurn){
+                return (<p>It is your turn</p>)
+            }else{
+                return (<p>Waiting for your opponent to make a move</p>)
+            }
+        } catch (e){
+            return (<p></p>)
+        }
+    }
+
     return(
         <div>
             <Gameboard  Red={Red} Blue={Blue} checkPiece={checkPiece}/>
             {/* {playerPieces(0)}           */}
             {/* {startGame()} */}
-            <button onClick={handleClick}></button>
+            <button onClick={handleClick}>Return Home</button>
+            <div>
+                <p>Red: {redPlayer} </p>
+                <HandleTurn/>
+                <p>Blue: {bluePlayer} </p>
+            </div>
+            <button>Forfeit</button>
         </div>    
     )
 }
