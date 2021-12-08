@@ -1,7 +1,8 @@
 import React, {useState, useEffect } from 'react'
 import { useHistory } from 'react-router';
 import * as Layout from '../../Layout';
-import { socket } from '../../socket'
+import { socket } from '../../socket';
+import './style.css';
 
 export function Homepage() {
 
