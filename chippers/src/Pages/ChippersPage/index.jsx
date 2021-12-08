@@ -1,12 +1,11 @@
 import React from 'react';
 import "./style.css";
+import {  CheckerGame } from "../../Components";
 
-import { Gameboard, CheckerGame } from "../../Components";
-
-export const ChippersPage = () => {
+export function ChippersPage() {
     return (
         <>
-            "Helloo"
+            
             <CheckerGame />
         </>
     )

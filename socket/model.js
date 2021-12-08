@@ -8,7 +8,7 @@ class Game {
         let game = {
             room: roomName,
             players:[],
-            currentplayer:"",
+            currentplayer:"red",
             pieces: [
                 {location: "26",colour : "blue",alive:true,king:false},
                 {location: "46",colour : "blue",alive:true,king:false},
@@ -49,6 +49,7 @@ class Game {
         }
         try{
             let game = this.getRoom(roomName);
+            console.log(`Player trying to join this game ${game}`);
             if (!!game){
                 game.players.push(player);
             }
@@ -102,40 +103,77 @@ class Game {
     }
 
     movePiece(roomName, oldLocation, newLocation){
-        let room = this.getRoom(roomName);
-        let piece = room.pieces.find(piece => piece.location === oldLocation)
-        piece.location = newLocation;
-        let currentplayer = room.currentplayer
-        let players = room.players
-        if (currentplayer === players[0].username){
-            currentplayer = players[1].username
-        } else {
-            currentplayer = players[0].username
+        try{
+            let room = this.getRoom(roomName);
+            let piece = room.pieces.find(piece => piece.location === oldLocation)
+            try{
+                let preventDuplicate = room.pieces.find(piece => piece.location === newLocation)
+                console.log(preventDuplicate);
+                if (preventDuplicate){
+                    return null;
+                }else{
+                    piece.location = newLocation;
+                    if (piece.colour === 'red' && parseInt(newLocation[1])===8){
+                        piece.king = true;
+                    } else if (piece.colour === 'blue' && parseInt(newLocation[1])===1){
+                        piece.king = true;
+                    }
+
+                    
+                    let players = room.players
+                    if (room.currentplayer === players[0].colour){
+                        room.currentplayer = players[1].colour
+                    } else {
+                        room.currentplayer = players[0].colour
+                    }
+                    return room
+                }
+            } catch (e){
+                piece.location = newLocation;
+               
+                let players = room.players
+                if (room.currentplayer === players[0].colour){
+                    room.currentplayer = players[1].colour
+                } else {
+                    room.currentplayer = players[0].colour
+                }
+                return room
+
+            }
+
+
+        }catch (e){
+            return null
         }
-        return room
     }
 
     takePiece(roomName, location){
-        let gameIndex = this.games.findIndex(game => game.room === roomName)
-        let pieceIndex = this.games[gameIndex].pieces.findIndex(piece=> piece.location === location)
-        this.games[gameIndex].pieces.splice(pieceIndex,1)
-        return this.games[gameIndex]
+        try{
+            let gameIndex = this.games.findIndex(game => game.room === roomName)
+            let pieceIndex = this.games[gameIndex].pieces.findIndex(piece=> piece.location === location)
+            this.games[gameIndex].pieces.splice(pieceIndex, 1)
+            return this.games[gameIndex]
+
+        }catch (e){
+            return null
+        }
     }
 
     setColour(roomName){
         let currentplayer = this.getRoom(roomName).currentplayer
         let players = this.getRoom(roomName).players;
-        let coinflip = Math.floor(Math.random*2);
-        console.log(coinflip);
+        let coinflip = Math.floor(Math.random()*2);
+        console.log(`coinflip ${coinflip}`);
         if (coinflip ===0){
             players[0].colour = "red";
             players[1].colour = "blue";
-            currentplayer = players[0].username;
+           
         } else {
             players[0].colour = "blue";
             players[1].colour = "red";
-            currentplayer = players[1].username;
+            
         }
+        console.log(`Playerlist with colours ${players[0].username} ${players[0].colour}`);
         return players
     }
 

@@ -1,19 +1,19 @@
 import React, { useRef } from 'react';
-import { checkPiece } from '../CheckerGame';
 
-export function BoardSquare({id, imageSource}) {
+
+export function BoardSquare({id, imageSource,checkPiece}) {
 
     const id_num = useRef(id)
     const racetrack = id_num.current
     
  
     // const check =document.getElementById('b3')
-    if(racetrack){
+    // if(racetrack){
 
-        console.log("got it");
-    }else{
-        console.log("not working");
-    }
+    //     console.log("got it");
+    // }else{
+    //     console.log("not working");
+    // }
 
 
 

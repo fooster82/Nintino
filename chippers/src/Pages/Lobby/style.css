@@ -1,0 +1,33 @@
+.window {
+    display: block;
+    width: 1000px;
+    height: 450px;
+    overflow: hidden;
+    position:fixed;
+    bottom: 0px;
+  }
+  
+  body{
+      height: 100vh;
+      box-sizing: border-box;
+      margin: 0px;
+      padding: 0px;
+  }
+  #wheel {
+      width: 100%;
+      cursor: pointer;
+      animation: wheel 1s linear 0s infinite;
+    }
+  /* #wheel:hover {
+  } */
+/*   
+  #wheel:active {
+      animation-play-state: paused;
+  }
+   */
+  @keyframes wheel {
+    100% {
+      transform: rotateZ(360deg);
+    }
+  }
+  
