@@ -63,13 +63,8 @@ export function Homepage() {
     }
 
     return (
-<<<<<<< HEAD
+
         <div role="homepage">
-            <Layout.Header />
-            <div >
-                <form onSubmit={handleSubmit}>
-=======
-        <div>
             <div id="logo-container">
                 <Logo />
             </div>
@@ -82,7 +77,7 @@ export function Homepage() {
                 <h4 className="checker-info">• To start a new game, enter the name you would like to give it in the box below and press 'Create Game'.</h4><br />
                 <h4 className="checker-info">• To join an already created game, enter its name into the box below and press 'Join Game'.</h4>
                 <form id="checkers-form" onSubmit={handleSubmit}>
->>>>>>> c60206ce3d0568dba674ab394aa7b597fe13beed
+
                     <input
                         type='text' role="gameID"
                         name='gameID' id='gameID' required
