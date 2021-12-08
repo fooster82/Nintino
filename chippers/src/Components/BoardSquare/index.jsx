@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
-import { checkPiece } from '../CheckerGame';
 
-export function BoardSquare({id, imageSource}) {
+
+export function BoardSquare({id, imageSource,checkPiece}) {
 
     const id_num = useRef(id)
     const racetrack = id_num.current
@@ -12,14 +12,6 @@ export function BoardSquare({id, imageSource}) {
     }
 
     return (
-        <>
-            { imageSource ? 
-                 <input onClick={clicked} ref={id_num} type='image' alt='board piece' src={imageSource}  className='board-btn' id={id}></input>
-                :
-                <input onClick={clicked} ref={id_num} type='image' className='board-btn' id={id}></input>
-            }
-            
-        </>
-   )
-    
+            <input type='image' alt='board piece' src={imageSource} disabled className='board-btn' id={id}></input>
+    )
 }

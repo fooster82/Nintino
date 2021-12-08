@@ -20,7 +20,7 @@ io.on("connection", socket => {
         cb({
             message: "game successfully created"
         })
-        console.log(game);
+        console.log(`We just created this game ${game}`);
     })
 
     socket.on("joinRoom", (username, roomName, cb)=>{
@@ -28,13 +28,14 @@ io.on("connection", socket => {
         socket.join(roomName);
         try{
             let currentGame = game.getRoom(roomName);
-            console.log(currentGame);
+            console.log(`currentGame ${currentGame}`);
             cb({
                 players: currentGame.players,
                 host: currentGame.host
             })
             io.to(roomName).emit("updatedPlayers", currentGame.players)
             if (currentGame.players.length==2){
+                console.log(`Setting colour`);
                 game.setColour(roomName)
                 io.to(roomName).emit("game-start",true)
             }
@@ -67,22 +68,40 @@ io.on("connection", socket => {
         cb({
             roomExists: room
         })
-        console.log(room);
+        console.log(`room ${room}`);
     })
 
     socket.on("movePiece", (roomName, oldLocation, newLocation) => {
-        let resp = game.MovePiece(roomName, oldLocation, newLocation)
-        io.to(roomName).emit("updatedPieces", resp)
+        console.log(`asking piece to move from ${oldLocation} to ${newLocation}`);
+        let resp = game.movePiece(roomName, oldLocation, newLocation)
+        console.log(resp);
+        rand = Math.random();
+        io.to(roomName).emit("updatedPieces", resp,rand)
     })
 
     socket.on("takePiece", (roomName, location)=>{
+        console.log(`Trying to take piece at ${location}`);
         let resp = game.takePiece(roomName, location)
-        io.to(roomName).emit("updatedPieces", resp)
+        console.log(resp);
+        rand = Math.random();
+        io.to(roomName).emit("updatedPieces", resp,rand)
     })
 
     socket.on("crown", (roomName, location)=>{
         let resp = game.crown(roomName, location)
+        rand = Math.random();
         io.to(roomName).emit("updatedPieces",resp)
+    })
+
+    socket.on("getGameDetails",(roomName)=>{
+        try{
+            let currentGame = game.games.find(game => game.room === roomName)
+            console.log(`This is the current game ${currentGame}`);
+            rand = Math.random();
+            io.to(roomName).emit("updatedPieces", currentGame,rand)
+        } catch (e){
+            console.warn(e);
+        }
     })
 })
 

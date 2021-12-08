@@ -21,7 +21,22 @@ body {
 }
 
 #hamburger {
-    font-size: 3rem;
+    font-size: 5rem;
     font-weight: bolder;
     display: block;
+}
+
+#logo {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+table {
+    /* border: 1px solid black; */
+    min-width: 100%;
+}
+
+tr {
+    height: 5rem;
 }
