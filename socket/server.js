@@ -103,6 +103,10 @@ io.on("connection", socket => {
             console.warn(e);
         }
     })
+
+    socket.on("end-game", (roomName, winner)=>{
+        io.to(roomName).emit("gameEnded", winner)
+    })
 })
 
 module.exports = server;

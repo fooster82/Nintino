@@ -32,9 +32,11 @@ export function CheckerGame() {
                 setBluePlayer(blue.username);
                 setCurrentTurn(game.currentplayer)
             }
-                
-            
         })
+        socket.on("gameEnded", (winner)=>{
+            history.push("/winningPage", {winner:winner})
+        })     
+            
     },[])
     
     
@@ -54,9 +56,25 @@ export function CheckerGame() {
                         }
                     }
                 }
+                if (red.length === 0) {
+                    try{
+                        let winner = gameData.players.find(player => player.colour === 'red')
+                        socket.emit("end-game", roomName, winner.username)
+                    } catch (e){
+                        
+                    }
+                }
+                if (blue.length === 0) {
+                    try{
+                        let winner = gameData.players.find(player => player.colour === 'blue')
+                        socket.emit("end-game", roomName, winner.username)
+                        
+                    } catch (e){
+                        
+                    }
+                }
             }
             // console.log(`This is red: ${red}`);
-    
             setPieces({red:red,blue:blue})
         }
         let gamePieces = gameData.pieces
@@ -68,12 +86,21 @@ export function CheckerGame() {
     // const Red = ['11','31','51','71','22','42','62','82','13','33','53','73']
     const Blue = pieces.blue
     // if (Red.length === 0) {
-    //     let winner = gameData.players.find(player => player.colour === 'red')
-    //     history.push("/winningPage", {colour: "red", winner: winner})
+    //     try{
+    //         let winner = gameData.players.find(player => player.colour === 'red')
+    //         socket.emit("end-game", roomName, winner.username)
+    //     } catch (e){
+            
+    //     }
     // }
     // if (Blue.length === 0) {
-    //     let winner = gameData.players.find(player => player.colour === 'blue')
-    //     history.push("/winningPage", {colour: "blue", winner: winner})
+    //     try{
+    //         let winner = gameData.players.find(player => player.colour === 'blue')
+    //         socket.emit("end-game", roomName, winner.username)
+            
+    //     } catch (e){
+            
+    //     }
     // }
 
     const coordinates=[
@@ -416,6 +443,18 @@ export function CheckerGame() {
         }
     }
 
+    const handleForfeit =() => {
+        let playerIndex = gameData.players.findIndex(player=> player.socketID === socketID)
+        if (playerIndex===1){
+            let winnerIndex = 0
+            let winner = gameData.players[winnerIndex]
+            socket.emit("end-game", roomName, winner.username)
+        } else{
+            let winnerIndex = 1
+            let winner = game.players[winnerIndex]
+            socket.emit("end-game", roomName, winner.username)
+        }
+    }
     return(
         <div>
             <Gameboard  Red={Red} Blue={Blue} checkPiece={checkPiece}/>
@@ -427,7 +466,7 @@ export function CheckerGame() {
                 <HandleTurn/>
                 <p>Blue: {bluePlayer} </p>
             </div>
-            <button>Forfeit</button>
+            <button onClick={handleForfeit}>Forfeit</button>
         </div>    
     )
 
