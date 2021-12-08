@@ -33,10 +33,13 @@ let availableMoves;
 const checkMove=(id)=>{
     availableMoves=[]
     if( Red.includes(id) ){
+        // if(king){
+        //     num=-1
+        // }
         switch(id[0]){
             case '1' :
                 console.log(id);
-                if (rightMovePiece(id,1 , '8')){
+                if (rightMovePiece(id,1, '8')){
                     availableMoves.push(rightMovePiece(id,1 , '8'))
                     console.log(availableMoves);
                     return movePiece('Red', id ,availableMoves);
@@ -133,11 +136,8 @@ const checkMove=(id)=>{
                     if(rightJump(id , -2 , 1)){
                         availableMoves.push(rightJump(id , -2 , 1))
                         console.log(availableMoves);
-                    }
-                    
-                    
+                    }                  
                 } 
-
                 if(leftmMovePiece(id, -1 , '1')){
                     console.log("blue left");
                     console.log(leftmMovePiece(id, -1 , '1'));
@@ -210,7 +210,7 @@ const checkBounds = (id) =>{
 const removePiece = (colour , id ) => {
     let index;
     if(colour === 'Red'){
-        console.log(Red);
+        console.log(`Red: ${Red}`);
         index=Red.indexOf(id);
         Red.splice(index,1);           
         console.log(Red);
@@ -219,7 +219,7 @@ const removePiece = (colour , id ) => {
         console.log(Blue);
         index=Blue.indexOf(id);
         Blue.splice(index,1);         
-        console.log(Blue)
+        console.log(`Blue : ${Blue}`)
     }
 }
 
@@ -236,7 +236,8 @@ const movePiece = (colour ,id,availableMoves) => {
                 if(colour === 'Red'){
                     if( Math.abs(parseInt(id[0]) - parseInt(availableMoves[x][0])) == 2 ){
                         console.log(availableMoves[x]);
-                        let new_id= (parseInt(id[0])+1).toString() + ((parseInt(id[1])+ parseInt(availableMoves[x][1]))/2)
+                        let new_id=(((parseInt(id[0]))+parseInt(availableMoves[x][0]))/2).toString() + ((parseInt(id[1])+ parseInt(availableMoves[x][1]))/2)
+                        console.log(`new_id : ${new_id}`);
                         removePiece('Blue' ,new_id)
                     }
                     console.log(Red);     
@@ -249,8 +250,8 @@ const movePiece = (colour ,id,availableMoves) => {
                     if( Math.abs(parseInt(id[0]) - parseInt(availableMoves[x][0])) == 2 ){
                         console.log(availableMoves[x]);
                         console.log(id);
-                        let new_id= (parseInt(id[0])-1).toString() + ((parseInt(id[1])+ parseInt(availableMoves[x][1]))/2)
-                        console.log(new_id);
+                        let new_id= (((parseInt(id[0]))+parseInt(availableMoves[x][0]))/2).toString() + ((parseInt(id[1])+ parseInt(availableMoves[x][1]))/2)
+                        console.log(`new_id : ${new_id}`);
                         removePiece('Red' ,new_id)
                     }
                     console.log(Blue);     
