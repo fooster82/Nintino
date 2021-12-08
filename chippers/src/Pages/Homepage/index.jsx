@@ -61,9 +61,9 @@ export function Homepage() {
     }
 
     return (
-        <div>
+        <div role="homepage">
             <Layout.Header />
-            <div>
+            <div >
                 <form onSubmit={handleSubmit}>
                     <input
                         type='text' role="gameID"

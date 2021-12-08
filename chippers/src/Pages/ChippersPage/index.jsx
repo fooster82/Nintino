@@ -4,9 +4,9 @@ import {  CheckerGame } from "../../Components";
 
 export function ChippersPage() {
     return (
-        <>
+        <div role="chippersPage">
             
             <CheckerGame />
-        </>
+        </div>
     )
 }
