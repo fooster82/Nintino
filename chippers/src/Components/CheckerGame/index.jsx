@@ -86,7 +86,7 @@ export function CheckerGame() {
         ['17', '27', '37', '47', '57', '67', '77', '77'],
         ['18', '28', '38', '48', '58', '68', '78', '88'],
     ]
-
+    
 
     const checkPiece=(id)=> {
 
@@ -327,7 +327,7 @@ export function CheckerGame() {
                             
                             socket.emit("movePiece", roomName, oldLocation, newLocation)
                             setTimeout((removePiece),1000, "Blue", location)
-                            piece.removeEventListener('click', handleClick)
+                            // piece.removeEventListener('click', handleClick)
                             setSelectedPiece('')
                         }
                         // console.log(Red);     
@@ -338,7 +338,7 @@ export function CheckerGame() {
                         // Red[index]=availableMoves[x]
                         // console.log("minus");
                         socket.emit("movePiece", roomName, oldLocation, newLocation)
-                        piece.removeEventListener('click', handleClick)
+                        // piece.removeEventListener('click', handleClick)
                         setSelectedPiece('')
                         // console.log(Red);
                         // console.log(piece.id);
@@ -357,7 +357,7 @@ export function CheckerGame() {
                             let oldLocation = id;
                             socket.emit("movePiece", roomName, oldLocation, newLocation)
                             setTimeout((removePiece),1000,'Red',location)
-                            piece.removeEventListener('click', handleClick)
+                            // piece.removeEventListener('click', handleClick)
                             setSelectedPiece('')
                         }
                         // console.log(Blue);     
@@ -370,7 +370,7 @@ export function CheckerGame() {
                         let newLocation = availableMoves[x];
                         let oldLocation = id;
                         socket.emit("movePiece", roomName, oldLocation, newLocation)
-                        piece.removeEventListener('click', handleClick)
+                        // piece.removeEventListener('click', handleClick)
                         setSelectedPiece('')
                     }
                     
@@ -439,7 +439,9 @@ export function CheckerGame() {
                 <HandleTurn/>
                 <p>Blue: {bluePlayer} </p>
             </div>
-            <button onClick={handleForfeit}>Forfeit</button>
+            <button>Forfeit</button>
         </div>    
     )
+
+
 }
