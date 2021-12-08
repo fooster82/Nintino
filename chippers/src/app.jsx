@@ -22,7 +22,11 @@ export const App = () =>{
                     <Route path="/lobby">
                         <Pages.Lobby/>
                     </Route>
-                
+
+                    <Route path="/winner">
+                        <Pages.WinnerPage/>
+                    </Route>
+
                     <Route>
                         <h1>Not found</h1>
                     </Route>
