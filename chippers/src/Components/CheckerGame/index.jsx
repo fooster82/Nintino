@@ -416,18 +416,6 @@ export function CheckerGame() {
         }
     }
 
-    const handleForfeit =() => {
-        let playerIndex = gameData.players.findIndex(player=> player.socketID === socketID)
-        if (playerIndex===1){
-            let winnerIndex = 0
-            let winner = game.players[winnerIndex]
-            history.push("/winningPage", {colour: winner.colour, winner: winner.username})
-        } else{
-            let winnerIndex = 1
-            let winner = game.players[winnerIndex]
-            history.push("/winningPage", {colour: winner.colour, winner: winner.username})
-        }
-    }
     return(
         <div>
             <Gameboard  Red={Red} Blue={Blue} checkPiece={checkPiece}/>
@@ -444,4 +432,7 @@ export function CheckerGame() {
     )
 
 
+
 }
+
+
