@@ -1,14 +1,15 @@
 import React from 'react';
 import './style.css';
-import { CheckerGame } from '..';
+import {  CheckerGame } from '..';
 import { BoardSquare } from '..';
 import redChip from './assets/red.png';
 import blueChip from './assets/blue.png';
-import { GamePiece } from '../GamePiece';
+import { RedPiece } from '../RedPiece';
+import { BluePiece } from '../BluePiece';
 import lightSquare from './assets/light-square.png';
 import darkSquare from './assets/dark-square.png';
 
-let cols = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+let cols = ['1', '2', '3', '4', '5', '6', '7', '8'];
 let rows = ['1', '2', '3', '4', '5', '6', '7', '8'];
 let coordinates = [[], [], [], [], [], [], [], []];
 
@@ -19,39 +20,38 @@ for(let c=0; c < cols.length; c++) {
 };  
 
 
-export function Gameboard({Red,Blue}) {
+export function Gameboard({Red,Blue, checkPiece}) {
+    // console.log("im rendering");
 
     const renderPieces = i => {
-        let buttons = document.querySelector('.board-btn')
-        
         if(i % 2 ==0) {     
-            return coordinates[i].map((c) => { 
+            return coordinates[i].map((c, j) => { 
                 
-                if(c[0] == 'b' || c[0] == 'd' || c[0] == 'f' || c[0] == 'h') {
-                    return <BoardSquare id={c} imageSource={lightSquare} />
+                if(c[0] == '2' || c[0] == '4' || c[0] == '6' || c[0] == '8') {
+                    return <BoardSquare key={j} checkPiece={checkPiece} id={c} imageSource={lightSquare} />
                 } else {  
                     if(Red.includes(c)) {
-                        return  <BoardSquare id={c} imageSource={redChip} />
+                        return  <RedPiece key={j} checkPiece={checkPiece} id={c} imageSource={redChip} />
                     }else if(Blue.includes(c)){
-                        return  <BoardSquare id={c} imageSource={blueChip} />
+                        return  <BluePiece key={j} checkPiece={checkPiece} id={c} imageSource={blueChip} />
                     }else{
-                        return <BoardSquare id={c} imageSource={darkSquare} />
+                        return <BoardSquare key={j} checkPiece={checkPiece} id={c} imageSource={darkSquare} />
                     }                                  
                 }                  
                 }
             )
         } else {
-            return coordinates[i].map((c) => { 
-                if(c[0] == 'a' || c[0] == 'c' || c[0] == 'e' || c[0] == 'g') {
+            return coordinates[i].map((c, j) => { 
+                if(c[0] == '1' || c[0] == '3' || c[0] == '5' || c[0] == '7') {
                     
-                    return <BoardSquare id={c} imageSource={lightSquare} />
+                    return <BoardSquare key={j} checkPiece={checkPiece} id={c}  imageSource={lightSquare} />
                 } else {
                     if(Red.includes(c)) {
-                        return  <BoardSquare id={c} imageSource={redChip} />
+                        return  <RedPiece key={j} checkPiece={checkPiece} id={c} imageSource={redChip} />
                     }else if(Blue.includes(c)){
-                        return  <BoardSquare id={c} imageSource={blueChip} />
+                        return  <BluePiece key={j} checkPiece={checkPiece} id={c} imageSource={blueChip} />
                     }else{
-                        return <BoardSquare id={c} imageSource={darkSquare} />
+                        return <BoardSquare key={j} checkPiece={checkPiece} id={c} imageSource={darkSquare} />
                     }                              
                 }
             })

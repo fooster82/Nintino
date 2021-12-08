@@ -1,0 +1,8 @@
+body {
+    background-color: #228B22;
+    font-family: 'Architects Daughter';
+    background-image: url("../../assets/background.jpeg");
+    color: white;
+    height: 100vh;
+    font-size: 16.5px;
+}

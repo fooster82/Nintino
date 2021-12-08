@@ -3,12 +3,13 @@ import * as Components from '../../Components';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
-import './header.css';
+import { useHistory } from 'react-router';
 
+import './header.css';
 
 export function Header() {
     const [showMenu, setShowMenu] = useState(false)
-
+    let history = useHistory()
     let menu;
 
     if(showMenu) {
@@ -17,11 +18,12 @@ export function Header() {
                 <button id="close-menu">
                     <FontAwesomeIcon icon={faTimes} onClick={() => setShowMenu(false)} />
                 </button>
-                <table>
-                    <tr><Link>Log out</Link></tr>
-                    <tr><Link>Home</Link></tr>
-                    <tr><Link>Other links etc</Link></tr>
-                </table>
+                <ul>
+                    <li><button onClick={()=>history.push("/")}>Home</button></li>
+                    <li><button onClick={()=>history.push("/logout")}>Logout</button></li>
+                    {/* <td><Link to={"/games/chippers"}>Chippers</Link></td> */}
+                    <li><Link>Other links etc</Link></li>
+                </ul>
             </div>
     }
 
@@ -34,7 +36,9 @@ export function Header() {
                 <FontAwesomeIcon icon={faBars} onClick={() => setShowMenu(true)} id="hamburger"/>
                 { menu }
             </nav>
-            <Link to={"/games/chippers"}>Chippers</Link>
+
+            <Link to={"chippers"}>Chippers</Link>
+            
         </header>
     )
 }

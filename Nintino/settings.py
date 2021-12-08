@@ -25,6 +25,7 @@ SECRET_KEY = 'django-insecure-tg9uh%%z^iq9xgbzwy_ri^*w-=2&^(bj&xkvfa^n4wa@qz(t6w
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+#ADD HOST HERE WHEN YOU POST ME
 ALLOWED_HOSTS = []
 
 
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
 ]
 
 MIDDLEWARE = [
@@ -72,6 +74,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'Nintino.wsgi.application'
+
 
 
 # Database
@@ -122,6 +125,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATIC_DIRS = [
+    '{BASE_DIR}/chippers/static/',
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
