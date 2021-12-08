@@ -407,9 +407,9 @@ export function CheckerGame() {
         try{
             const player = gameData.players.find(player=> player.socketID === socketID); 
             if(player.colour===currentTurn){
-                return (<p>It is your turn</p>)
+                return (<p>It's your turn!</p>)
             }else{
-                return (<p>Waiting for your opponent to make a move</p>)
+                return (<p>Waiting for your opponent to make a move...</p>)
             }
         } catch (e){
             return (<p></p>)
@@ -417,17 +417,20 @@ export function CheckerGame() {
     }
 
     return(
-        <div>
+        <div id="chipper-gamepage-container">           
+            <button id="forfeit-btn">Forfeit</button>            
             <Gameboard  Red={Red} Blue={Blue} checkPiece={checkPiece}/>
             {/* {playerPieces(0)}           */}
             {/* {startGame()} */}
-            <button onClick={handleClick}>Return Home</button>
-            <div>
-                <p>Red: {redPlayer} </p>
+            
+            <div id="underboard-container">
                 <HandleTurn/>
-                <p>Blue: {bluePlayer} </p>
+                <div id="player-container">
+                    <p>Red: {redPlayer} </p>
+                    <p>Blue: {bluePlayer} </p>
+                </div>
             </div>
-            <button>Forfeit</button>
+            
         </div>    
     )
 }
