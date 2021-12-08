@@ -7,9 +7,6 @@ import { useHistory } from 'react-router';
 
 import './header.css';
 
-
-
-
 export function Header() {
     const [showMenu, setShowMenu] = useState(false)
     let history = useHistory()
