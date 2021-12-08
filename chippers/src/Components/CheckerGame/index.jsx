@@ -86,7 +86,7 @@ export function CheckerGame() {
         ['17', '27', '37', '47', '57', '67', '77', '77'],
         ['18', '28', '38', '48', '58', '68', '78', '88'],
     ]
-
+    
 
     const checkPiece=(id)=> {
 
@@ -418,30 +418,18 @@ export function CheckerGame() {
         }
     }
 
-    const handleForfeit =() => {
-        let playerIndex = gameData.players.findIndex(player=> player.socketID === socketID)
-        if (playerIndex===1){
-            let winnerIndex = 0
-            let winner = game.players[winnerIndex]
-            history.push("/winningPage", {colour: winner.colour, winner: winner.username})
-        } else{
-            let winnerIndex = 1
-            let winner = game.players[winnerIndex]
-            history.push("/winningPage", {colour: winner.colour, winner: winner.username})
-        }
-    }
     return(
         <div>
-            <Gameboard  Red={Red} Blue={Blue} checkPiece={checkPiece}/>
+            <Gameboard  role="gameBoard" Red={Red} Blue={Blue} checkPiece={checkPiece}/>
             {/* {playerPieces(0)}           */}
             {/* {startGame()} */}
-            <button onClick={handleClick}>Return Home</button>
-            <div>
+            <button role="homeButton" onClick={handleClick}>Return Home</button>
+            <div role="playerInfo">
                 <p>Red: {redPlayer} </p>
                 <HandleTurn/>
                 <p>Blue: {bluePlayer} </p>
             </div>
-            <button onClick={handleForfeit}>Forfeit</button>
+            <button role="forfeit">Forfeit</button>
         </div>    
     )
 }

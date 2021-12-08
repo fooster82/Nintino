@@ -2,7 +2,7 @@ import React from 'react'
 
 export function SignUpButton() {
     return (
-        <button>
+        <button role="signUpButton">
             Sign Up!
         </button>
     )

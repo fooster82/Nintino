@@ -12,6 +12,14 @@ export function BoardSquare({id, imageSource,checkPiece}) {
     }
 
     return (
-            <input type='image' alt='board piece' src={imageSource} disabled className='board-btn' id={id}></input>
-    )
+        <>
+            { imageSource ? 
+                 <input role="boardSquare" onClick={clicked} ref={id_num} type='image' alt='board piece' src={imageSource}  className='board-btn' id={id}></input>
+                :
+                <input role="boardSquare" onClick={clicked} ref={id_num} type='image' className='board-btn' id={id}></input>
+            }
+            
+        </>
+   )
+    
 }

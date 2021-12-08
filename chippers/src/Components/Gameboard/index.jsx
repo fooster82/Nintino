@@ -60,7 +60,7 @@ export function Gameboard({Red,Blue, checkPiece}) {
     }
 
     return (
-        <div id='board'>
+        <div id='board' role="gameBoard">
             <div id="row1" className='board-row'>
                 { renderPieces(7) }
             </div>
