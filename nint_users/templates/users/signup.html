@@ -1,16 +1,20 @@
 {% extends "users/base.html" %}
 
 {% block content %}
-    <form method="POST">
+<div id="signup-container">
+    <h1 id="signup-header">Sign-up below!</h1>
+    
+    <form id="signup-form" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="Sign Up">
     </form>
-
-    <span class="helptext">
+    
+    <span id="login-container">
         Already have an account?
         <a href="{% url 'login' %}">Login here</a>
     </span>
+</div>
 {% endblock content %}
 
 

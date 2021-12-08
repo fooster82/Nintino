@@ -126,7 +126,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
 STATIC_DIRS = [
     '{BASE_DIR}/chippers/static/',
 ]
