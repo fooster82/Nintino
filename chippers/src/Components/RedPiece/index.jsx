@@ -1,7 +1,7 @@
 import React , { useRef }  from 'react';
-import { checkPiece } from '../CheckerGame';
 
-export function RedPiece({imageSource , id }){
+
+export function RedPiece({imageSource , id, checkPiece}){
     const id_num = useRef(id)
     const racetrack = id_num.current
 

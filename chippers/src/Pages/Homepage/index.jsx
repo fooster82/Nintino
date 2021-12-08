@@ -14,8 +14,9 @@ export function Homepage() {
     }
     
     useEffect(()=>{
+        socket.removeAllListeners()
         socket.connect();
-    })
+    },[])
     
     const handleSubmit = (e) =>{
         e.preventDefault()

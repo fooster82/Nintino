@@ -8,7 +8,7 @@ class Game {
         let game = {
             room: roomName,
             players:[],
-            currentplayer:"",
+            currentplayer:"red",
             pieces: [
                 {location: "26",colour : "blue",alive:true,king:false},
                 {location: "46",colour : "blue",alive:true,king:false},
@@ -106,18 +106,38 @@ class Game {
         try{
             let room = this.getRoom(roomName);
             let piece = room.pieces.find(piece => piece.location === oldLocation)
-            piece.location = newLocation;
-            let currentplayer = room.currentplayer
-            let players = room.players
-            if (currentplayer === players[0].username){
-                currentplayer = players[1].username
-            } else {
-                currentplayer = players[0].username
+            try{
+                let preventDuplicate = room.pieces.find(piece => piece.location === newLocation)
+                console.log(preventDuplicate);
+                if (preventDuplicate){
+                    return null;
+                }else{
+                    piece.location = newLocation;
+                    
+                    let players = room.players
+                    if (room.currentplayer === players[0].colour){
+                        room.currentplayer = players[1].colour
+                    } else {
+                        room.currentplayer = players[0].colour
+                    }
+                    return room
+                }
+            } catch (e){
+                piece.location = newLocation;
+               
+                let players = room.players
+                if (room.currentplayer === players[0].colour){
+                    room.currentplayer = players[1].colour
+                } else {
+                    room.currentplayer = players[0].colour
+                }
+                return room
+
             }
-            return room
+
 
         }catch (e){
-            return "Server broken"
+            return null
         }
     }
 
@@ -125,11 +145,11 @@ class Game {
         try{
             let gameIndex = this.games.findIndex(game => game.room === roomName)
             let pieceIndex = this.games[gameIndex].pieces.findIndex(piece=> piece.location === location)
-            this.games[gameIndex].pieces[pieceIndex].alive = false
+            this.games[gameIndex].pieces.splice(pieceIndex, 1)
             return this.games[gameIndex]
 
         }catch (e){
-            return
+            return null
         }
     }
 
@@ -141,11 +161,11 @@ class Game {
         if (coinflip ===0){
             players[0].colour = "red";
             players[1].colour = "blue";
-            currentplayer = players[0].username;
+           
         } else {
             players[0].colour = "blue";
             players[1].colour = "red";
-            currentplayer = players[1].username;
+            
         }
         console.log(`Playerlist with colours ${players[0].username} ${players[0].colour}`);
         return players
