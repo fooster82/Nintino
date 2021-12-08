@@ -1,9 +1,9 @@
 import React from 'react'
 
+import logo from "../../assets/logo.png";
+
 export function Logo() {
     return (
-        <div id="logo">
-            <img src="../../assets/logo.png" alt="nintino logo" />
-        </div>
+            <img id="logo" src={logo} alt="nintino logo" />
     )
 }

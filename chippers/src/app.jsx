@@ -18,10 +18,13 @@ export const App = () =>{
                         <Pages.ChippersPage />
                     </Route>
                         
-
                     <Route path="/lobby">
                         <Pages.Lobby/>
                     </Route>
+
+                    <Route path="/comingsoon">
+                        <Pages.ComingSoon />
+                    </ Route>
                 
                     <Route>
                         <h1>Not found</h1>
