@@ -74,6 +74,7 @@ io.on("connection", socket => {
     socket.on("movePiece", (roomName, oldLocation, newLocation) => {
         console.log(`asking piece to move from ${oldLocation} to ${newLocation}`);
         let resp = game.movePiece(roomName, oldLocation, newLocation)
+        console.log(resp);
         rand = Math.random();
         io.to(roomName).emit("updatedPieces", resp,rand)
     })
@@ -81,6 +82,7 @@ io.on("connection", socket => {
     socket.on("takePiece", (roomName, location)=>{
         console.log(`Trying to take piece at ${location}`);
         let resp = game.takePiece(roomName, location)
+        console.log(resp);
         rand = Math.random();
         io.to(roomName).emit("updatedPieces", resp,rand)
     })
