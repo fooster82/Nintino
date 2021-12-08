@@ -16,6 +16,7 @@ describe("CheckerGame", () => {
         render(<CheckerGame />);
         let homeButton = screen.getByRole("homeButton");
         expect(homeButton).toBeInTheDocument();
+        expect(homeButton.textContent).toContain('Return Home')
     });
 
     test("it renders playerInfo", () => {
