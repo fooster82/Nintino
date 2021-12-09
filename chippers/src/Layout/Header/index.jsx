@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./header.css";
 
 const Header = () => {
@@ -29,24 +29,24 @@ const Header = () => {
 
   return (
     <>
-      <div id="btn-container">
+      <div id="btn-container" role="navBtn">
         <div ref={navBtn} id="nav-btn-burger" onClick={showNav}>
           &#9776;
         </div>
       </div>
 
       <nav ref={navBar} id='hide' className="links-container" role="navigation">
-        <NavLink onClick={closeNav} className="links" to="/">
+        <a role="Home" onClick={closeNav} className="links" to="/">
           Home
-        </NavLink>
+        </a>
 
-        <NavLink onClick={closeNav} className="links" to="/logout">
+        <a role="logout" onClick={closeNav} className="links" to="/logout">
           Logout
-        </NavLink>
+        </a>
         
-        <NavLink onClick={closeNav} className="links" to="/comingsoon">
+        <a role="comming_soon" onClick={closeNav} className="links" to="/comingsoon">
           Coming soon!
-        </NavLink>
+        </a>
 
       </nav>
     </>

@@ -71,12 +71,12 @@ export function Homepage() {
 
             <Layout.Header />
 
-            <div id="checkers-container">
-                <h1 id="chippers-title" className='center-text'>Chippers</h1>
-                <h3 className='center-text'>A spin on the classic game of checkers</h3><br />
-                <h4 className="checker-info">• To start a new game, enter the name you would like to give it in the box below and press 'Create Game'.</h4><br />
-                <h4 className="checker-info">• To join an already created game, enter its name into the box below and press 'Join Game'.</h4>
-                <form id="checkers-form" onSubmit={handleSubmit}>
+            <div role="container" id="checkers-container">
+                <h1 role="title" id="chippers-title" className='center-text'>Chippers</h1>
+                <h3 role="text" className='center-text'>A spin on the classic game of checkers</h3><br />
+                <h4 role="info" className="checker-info">• To start a new game, enter the name you would like to give it in the box below and press 'Create Game'.</h4><br />
+                <h4 role="checker-info" className="checker-info">• To join an already created game, enter its name into the box below and press 'Join Game'.</h4>
+                <form role="form" id="checkers-form" onSubmit={handleSubmit}>
 
                     <input
                         type='text' role="gameID"
@@ -91,10 +91,10 @@ export function Homepage() {
                         <input className="game-btn" onClick={(e) => setSubmitter(e.target.value)} type="submit" role="create" value="Create Game" />
                     </div>
                 </form>
-                <p className="Message">{message}</p>
+                <p role="message" className="Message">{message}</p>
             </div>
 
-            <h4 id="comingsoon">Want a sneak peak at what we have planned for the future? Click <a id="comingsoon-link" href="">here!</a></h4>
+            <h4 role="comingsoon" id="comingsoon">Want a sneak peak at what we have planned for the future? Click <a id="comingsoon-link" href="">here!</a></h4>
         </div>
     )
 }
