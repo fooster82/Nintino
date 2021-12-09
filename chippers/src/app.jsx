@@ -26,7 +26,7 @@ export const App = () =>{
                         <Pages.ComingSoon />
                     </ Route>
 
-                    <Route path="/winnersPage">
+                    <Route path="/winningPage">
                         <Pages.WinnerPage />
                     </Route>
                 
