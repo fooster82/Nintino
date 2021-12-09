@@ -6,6 +6,8 @@ import redChip from './assets/red.png';
 import blueChip from './assets/blue.png';
 import { RedPiece } from '../RedPiece';
 import { BluePiece } from '../BluePiece';
+import redKing  from './assets/redKing.png';
+import blueKing  from './assets/blueKing.png';
 import lightSquare from './assets/light-square.png';
 import darkSquare from './assets/dark-square.png';
 
@@ -20,7 +22,7 @@ for(let c=0; c < cols.length; c++) {
 };  
 
 
-export function Gameboard({Red,Blue, checkPiece}) {
+export function Gameboard({Red,Blue,RedKing, BlueKing, checkPiece}) {
     // console.log("im rendering");
 
     const renderPieces = i => {
@@ -28,12 +30,19 @@ export function Gameboard({Red,Blue, checkPiece}) {
             return coordinates[i].map((c, j) => { 
                 
                 if(c[0] == '2' || c[0] == '4' || c[0] == '6' || c[0] == '8') {
+                    console.log("lightSquare");
                     return <BoardSquare key={j} checkPiece={checkPiece} id={c} imageSource={lightSquare} />
+
                 } else {  
                     if(Red.includes(c)) {
+                        console.log("red square");
                         return  <RedPiece key={j} checkPiece={checkPiece} id={c} imageSource={redChip} />
                     }else if(Blue.includes(c)){
                         return  <BluePiece key={j} checkPiece={checkPiece} id={c} imageSource={blueChip} />
+                    }else if(RedKing.includes(c)) {
+                        return  <RedPiece key={j} checkPiece={checkPiece} id={c} imageSource={redKing} />
+                    }else if(BlueKing.includes(c)){
+                        return  <BluePiece key={j} checkPiece={checkPiece} id={c} imageSource={blueKing} />
                     }else{
                         return <BoardSquare key={j} checkPiece={checkPiece} id={c} imageSource={darkSquare} />
                     }                                  
@@ -43,18 +52,23 @@ export function Gameboard({Red,Blue, checkPiece}) {
         } else {
             return coordinates[i].map((c, j) => { 
                 if(c[0] == '1' || c[0] == '3' || c[0] == '5' || c[0] == '7') {
-                    
+                    console.log("lightSquare");
                     return <BoardSquare key={j} checkPiece={checkPiece} id={c}  imageSource={lightSquare} />
-                } else {
+                } else {  
                     if(Red.includes(c)) {
                         return  <RedPiece key={j} checkPiece={checkPiece} id={c} imageSource={redChip} />
                     }else if(Blue.includes(c)){
                         return  <BluePiece key={j} checkPiece={checkPiece} id={c} imageSource={blueChip} />
+                    }else if(RedKing.includes(c)) {
+                        return  <RedPiece key={j} checkPiece={checkPiece} id={c} imageSource={redKing} />
+                    }else if(BlueKing.includes(c)){
+                        return  <BluePiece key={j} checkPiece={checkPiece} id={c} imageSource={blueKing} />
                     }else{
                         return <BoardSquare key={j} checkPiece={checkPiece} id={c} imageSource={darkSquare} />
-                    }                              
+                    }                                  
+                }                  
                 }
-            })
+            )
         }
         
     }
