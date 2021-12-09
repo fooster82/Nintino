@@ -96,7 +96,7 @@ export function WinnerPage(props) {
         <>
         <Header />
         <canvas ref={canvasRef} {...props} id='homecanvas'></canvas>
-        <h1>{winner} has won!</h1>
+        <h1 id="winnertitle">{winner} has won!</h1>
         </>
     )
 }
