@@ -1,7 +1,8 @@
 import { socket } from "../../socket";
 import React, {useEffect} from "react";
 import { useHistory } from "react-router";
-
+import "./style.css";
+import rouletteWheel from "./roulette-wheel.svg"
 export const Lobby=() => {
     let history = useHistory();
     const username = JSON.parse(document.getElementById('user_id').textContent);
@@ -24,7 +25,13 @@ export const Lobby=() => {
     })
 
     return (
-        <h1 role="lobby">You're in the lobby</h1>
+        <>
+            <h1>Waiting for your opponent to join</h1>
+            <div className="window">
+                 <img src={rouletteWheel} id="wheel" alt="roulette wheel"></img>
+
+            </div>
+        </>
     )
 
 }

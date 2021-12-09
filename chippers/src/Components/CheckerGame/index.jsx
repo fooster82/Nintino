@@ -581,23 +581,25 @@ export function CheckerGame() {
         }
     }
     return(
-        <div>
-            <Gameboard  Red={Red} Blue={Blue} RedKing={RedKing} BlueKing={BlueKing} checkPiece={checkPiece}/>
+        <> 
+            <div id="chipper-gamepage-container">           
+                <button id="forfeit-btn" onClick={handleForfeit}>Forfeit</button>            
+                <Gameboard  Red={Red} Blue={Blue} RedKing={RedKing} BlueKing={BlueKing} checkPiece={checkPiece}/>
+                {/* {playerPieces(0)}           */}
+                {/* {startGame()} */}
 
-            {/* {playerPieces(0)}           */}
-            {/* {startGame()} */}
-            
-            <div id="underboard-container">
-                <HandleTurn/>
-                <div id="player-container">
-                    <p>Red: {redPlayer} </p>
-                    <p>Blue: {bluePlayer} </p>
+                <div id="underboard-container">
+                    <HandleTurn/>
+                    <div id="player-container">
+                        <p>Red: {redPlayer} </p>
+                        <p>Blue: {bluePlayer} </p>
+                    </div>
                 </div>
-            </div>
-            <button onClick={handleForfeit}>Forfeit</button>
 
-        </div>    
+            </div>
+        </>
     )
+
 
 
 
