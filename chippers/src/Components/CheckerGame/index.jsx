@@ -33,9 +33,8 @@ export function CheckerGame() {
                 setCurrentTurn(game.currentplayer)
             }
         })
-        socket.on("gameEnded", (winner)=>{
+        socket.on("gameEnded", (winner, colour)=>{
             try {
-                let colour = gameData.players.find(player => player.username === winner).colour;
                 history.push("/winningPage", {winner:winner, colour: colour})
             } catch (e) { 
                 console.warn(e);
@@ -74,7 +73,7 @@ export function CheckerGame() {
                 if (red.length === 0 && redKing.length === 0) {
                     try{
                         let winner = gameData.players.find(player => player.colour === 'red')
-                        socket.emit("end-game", roomName, winner.username)
+                        socket.emit("end-game", roomName, winner.username, winner.colour)
                     } catch (e){
                         
                     }
@@ -82,7 +81,7 @@ export function CheckerGame() {
                 if (blue.length === 0 && blueKing.length === 0) {
                     try{
                         let winner = gameData.players.find(player => player.colour === 'blue')
-                        socket.emit("end-game", roomName, winner.username)
+                        socket.emit("end-game", roomName, winner.username, winner.colour)
                         
                     } catch (e){
                         
@@ -578,11 +577,11 @@ export function CheckerGame() {
         if (playerIndex===1){
             let winnerIndex = 0
             let winner = gameData.players[winnerIndex]
-            socket.emit("end-game", roomName, winner.username)
+            socket.emit("end-game", roomName, winner.username, winner.colour)
         } else{
             let winnerIndex = 1
             let winner = gameData.players[winnerIndex]
-            socket.emit("end-game", roomName, winner.username)
+            socket.emit("end-game", roomName, winner.username, winner.colour)
         }
     }
     return(
