@@ -1,11 +1,18 @@
 import React, { useEffect, useRef } from 'react';
 // import './style.css';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 
 
 export function WinnerPage(props) {
     
     const location = useLocation();
+    const history = useHistory();
+    if (location.state.winner){
+        let winner = location.state.winner;
+    } else {
+        history.push('/')
+    }
+
 
     const canvasRef = useRef(null)
 
@@ -86,7 +93,7 @@ export function WinnerPage(props) {
     return(
         <>
         <canvas ref={canvasRef} {...props} id='homecanvas'></canvas>
-        <h1>{props.location.state.winner}</h1>
+        <h1>{winner} has won!</h1>
         </>
     )
 }
