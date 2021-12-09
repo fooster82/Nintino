@@ -1,6 +1,6 @@
 import { fas } from "@fortawesome/free-solid-svg-icons";
 
-let socketURL = "http://localhost:1234";
+let socketURL = "https://nintino-sockets.herokuapp.com/";
 
 const io = require("socket.io-client");
 

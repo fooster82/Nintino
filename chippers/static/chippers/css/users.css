@@ -20,7 +20,7 @@ label {
     text-align: center;
     text-shadow: 2px 3px black;
     font-size: 30px;
-    margin-bottom: 70px;
+    margin-bottom: 25px;
 }
 
 input[type=submit] {
@@ -34,7 +34,6 @@ input[type=submit] {
     font-family: 'Architects Daughter';
     font-size: 40px;
     padding: 10px;
-    margin-top: 10px;
     box-shadow: none;
 }
 
@@ -59,7 +58,7 @@ p {
 }
 
 .account-checker {
-    margin-top: 8vh;
+    margin-top: 3vh;
     text-align: center;
     font-size: 18px;
 }
@@ -87,4 +86,9 @@ p {
 #logo {
     width: 75vw;
     margin-bottom: 50px;
+}
+
+.errorlist {
+    font-size: 20px;
+    font-weight: 900;
 }
