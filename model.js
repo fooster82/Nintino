@@ -113,6 +113,12 @@ class Game {
                     return null;
                 }else{
                     piece.location = newLocation;
+                    if (piece.colour === 'red' && parseInt(newLocation[1])===8){
+                        piece.king = true;
+                    } else if (piece.colour === 'blue' && parseInt(newLocation[1])===1){
+                        piece.king = true;
+                    }
+
                     
                     let players = room.players
                     if (room.currentplayer === players[0].colour){
