@@ -576,7 +576,7 @@ export function CheckerGame() {
             socket.emit("end-game", roomName, winner.username)
         } else{
             let winnerIndex = 1
-            let winner = game.players[winnerIndex]
+            let winner = gameData.players[winnerIndex]
             socket.emit("end-game", roomName, winner.username)
         }
     }
