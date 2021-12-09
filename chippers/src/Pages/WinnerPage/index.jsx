@@ -71,11 +71,11 @@ export function WinnerPage(props) {
                     let directionY = (Math.random() * 0.4) - 0.2;
                     let color;
                     if(colour === 'blue'){
-                        color = rgba(0, 0, 255, 0.8);
+                        color = 'rgba(0, 0, 255, 0.8)';
                     } else if(colour === 'red') {
-                        color = rgba(255, 0, 0, 0.8)
+                        color = 'rgba(255, 0, 0, 0.8)'
                     } else {
-                        color = rgba(255, 255, 255, 0.6)
+                        color = 'rgba(255, 255, 255, 0.6)'
                     }
 
                     bubbleArray.push(new Bubble(x, y, directionX, directionY, size, color));
