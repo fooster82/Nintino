@@ -1,1 +1,2 @@
 # Nintino
+## Installation & Usage
