@@ -1,12 +1,12 @@
-import React, { useRef , useEffect, useState} from 'react';
+import React, { useEffect, useState} from 'react';
 import redChip from './assets/red.png';
 import blueChip from './assets/blue.png';
-// import { GamePiece } from '../RedPiece';
 import { Gameboard } from '../Gameboard';
 import './style.css';
 import { useHistory } from "react-router";
 import { socket } from "../../socket";
 // this will use django authentication
+
 
 export function CheckerGame() {
     let history = useHistory();
@@ -198,7 +198,6 @@ export function CheckerGame() {
                         break
                     default:
                         if(rightMovePiece(id, -1 , '1')){
-                            console.log("blue right");
                             console.log(rightMovePiece(id, -1 , '1'));
                             availableMoves.push(rightMovePiece(id, -1 , '1'))  
                         } else if(Red.includes((parseInt(id[0])+1).toString()+(parseInt(id[1])-1))){
@@ -206,9 +205,7 @@ export function CheckerGame() {
                             if(rightJump(id , -2 , 1)){
                                 availableMoves.push(rightJump(id , -2 , 1))
                                 console.log(availableMoves);
-                            }
-                            
-                            
+                            }  
                         } 
 
                         if(leftmMovePiece(id, -1 , '1')){
@@ -409,17 +406,17 @@ export function CheckerGame() {
         try{
             const player = gameData.players.find(player=> player.socketID === socketID); 
             if(player.colour===currentTurn){
-                return (<p>It is your turn</p>)
+                return (<p role="turn">It is your turn</p>)
             }else{
-                return (<p>Waiting for your opponent to make a move</p>)
+                return (<p role="turn">Waiting for your opponent to make a move</p>)
             }
         } catch (e){
-            return (<p></p>)
+            return (<p role="turn"></p>)
         }
     }
 
     return(
-        <div>
+        <div role="div">
             <Gameboard  role="gameBoard" Red={Red} Blue={Blue} checkPiece={checkPiece}/>
             {/* {playerPieces(0)}           */}
             {/* {startGame()} */}

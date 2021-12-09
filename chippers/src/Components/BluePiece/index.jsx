@@ -11,6 +11,6 @@ export function BluePiece({ id ,imageSource, checkPiece}){
     }
 
     return(
-        <input role="bluePiece" onClick={clicked} ref= {id_num} type='image' alt='player piece' src={imageSource}  className='piece-img' id={id}></input>
+        <input role="bluePiece" data-testid={id} onClick={clicked} ref= {id_num} type='image' alt='player piece' src={imageSource}  className='piece-img' id={id}></input>
     )
 }
