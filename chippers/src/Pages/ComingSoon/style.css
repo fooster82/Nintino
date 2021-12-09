@@ -11,6 +11,7 @@
     border: 5px solid black;
     margin-bottom: 3vh;
     color: black;
+    display: flex;
 }
 
 .container-header {
@@ -31,7 +32,6 @@
 
 #modes-container {
     background-color: rgba(255,255,255,0.85);
-    height: 100%;
 }
 
 .container-description {

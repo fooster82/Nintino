@@ -21,18 +21,20 @@ body {
 #checkers-container {
     border: 5px solid black;
     color: black;
-    margin-top: 5vh;    
-    background-image: url("../../assets/chippers-background.PNG");
-    background-size: cover;
+    margin-top: 5vh;   
     background-color: rgba(255,255,255,0.85);
-    background-blend-mode: lighten;
     z-index: 50;
     position: relative;
 }
 
+#chippers-image-container {
+    background-image: url("../../assets/chippers-background.PNG");
+    background-size: cover;
+}
+
 #comingsoon {
-    position: fixed;
-    bottom: 0vh;
+    position: absolute;
+    bottom: 0;
     text-align: center; 
     text-shadow: 2px 3px black;
 }
