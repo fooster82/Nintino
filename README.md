@@ -1,5 +1,7 @@
 # Nintino
 
+**DEPLOY FIX IS THE CURRENT WORKING BRANCH
+
 Live deploy: https://nintino.herokuapp.com/
 
 ## Installation & Usage
