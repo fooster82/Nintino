@@ -48,7 +48,7 @@
 }
 
 #games-container {
-    background-image: url("../../assets/chippers-background.PNG");
+    background-image: url("../../assets/games-background.PNG");
     background-size: cover;
     background-color: rgba(255,255,255,0.85);
     background-blend-mode: lighten;
