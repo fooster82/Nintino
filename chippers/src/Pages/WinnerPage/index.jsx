@@ -1,76 +1,92 @@
 import React, { useEffect, useRef } from 'react';
 // import './style.css';
+import { useLocation } from 'react-router-dom';
 
 
 export function WinnerPage(props) {
     
+    const location = useLocation();
+
     const canvasRef = useRef(null)
-    
+
     useEffect(() => {
-        
-        const winner = canvasRef.current
-        const context = winner.getContext('2d') 
-        winner.width = window.innerWidth
-        winner.height = window.innerHeight
 
-        class Circle {
-            constructor(xpos, ypos, radius, color, speed) {
-                this.xpos = xpos;
-                this.ypos = ypos;
-                this.radius = radius;
+        const homecanvas = canvasRef.current
+        const ctx = homecanvas.getContext('2d') 
+        homecanvas.width = window.innerWidth
+        homecanvas.height = window.innerHeight
+
+        let bubbleArray;
+
+        // create Bubble class & constructor
+        class Bubble {
+            constructor(x, y, directionX, directionY, size, color){
+                this.x = x;
+                this.y = y;
+                this.directionX = directionX;
+                this.directionY = directionY;
+                this.size = size;
                 this.color = color;
-                this.speed = speed;
-        
-                this.dx = 1 * this.speed;
-                this.dy = 1 * this.speed;
             }
-        
-            draw(context) {
-                context.beginPath();
-                context.arc(this.xpos, this.ypos, this.radius, 0, Math.PI * 2, false);
-                context.stroke();
+            // add draw function
+            draw(){
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                ctx.fillStyle = this.color;
+                ctx.fill();
             }
-        
-            update() {
-                context.clearRect(0, 0, winner.width, winner.height)
-                this.draw(context);
-                
-                if ( (this.xpos + this.radius) > winner.width){
-                    this.dx = -this.dx;
+            // movement function
+            update(){
+                if(this.x + this.size >= homecanvas.width || this.x - this.size <= 0){
+                    this.directionX = -this.directionX;
                 }
-        
-                if ( (this.xpos - this.radius) < 0 ){
-                    this.dx = -this.dx
+                if(this.y + this.size >= homecanvas.height || this.y - this.size <= 0){
+                    this.directionY = - this.directionY;
                 }
                 
-                this.ypos += this.dx
-        
+                this.x += this.directionX;
+                this.y += this.directionY;
+                this.draw();
             }
         }
+            // create the bubble array
+            function init(){
+                bubbleArray = [];
+                for (let i = 0; i < 50; i++) {
+                    let size = Math.random() * 50;
+                    let x = Math.random() * (homecanvas.width - size * 2);
+                    let y = Math.random() * (homecanvas.height - size * 3);
+                    let directionX = (Math.random() * 0.4) - 0.2;
+                    let directionY = (Math.random() * 0.4) - 0.2;
+                    let color = 'rgba(250, 250, 250, 0.6)';
 
-        let circle1 = new Circle(winner.width/2, 0, 25, "pink", 5);
-        circle1.draw(context);
-        
-        let updateCircle = function() {
-            requestAnimationFrame(updateCircle)
-            circle1.update();
-        }
-        
-        updateCircle();
+                    bubbleArray.push(new Bubble(x, y, directionX, directionY, size, color));
+                }
+            }
+            // animation loop
+            function animate(){
+                requestAnimationFrame(animate);
+                ctx.clearRect(0, 0, innerWidth, innerHeight);
+
+                for (let i = 0; i < bubbleArray.length; i++){
+                    bubbleArray[i].update()
+                }
+            }
+        init();
+        animate();
+
+        window.addEventListener('resize', function(){
+            homecanvas.width = innerWidth;
+            homecanvas.height = innerHeight;
+            init();
+        })
 
     }, [])
 
-
-
-    return (
+    return(
         <>
-            <canvas ref={canvasRef} {...props} id="winner" ></canvas>
-
+        <canvas ref={canvasRef} {...props} id='homecanvas'></canvas>
+        <h1>{props.location.state.winner}</h1>
         </>
     )
 }
-
-// let racetrack = document.getElementById("myCanvas");
-// const context = racetrack.getContext("2d");
-
-
