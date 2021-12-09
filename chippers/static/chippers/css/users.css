@@ -88,3 +88,7 @@ p {
     width: 75vw;
     margin-bottom: 50px;
 }
+
+.errorlist {
+    font-size: 20px;
+}
