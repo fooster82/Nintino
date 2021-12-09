@@ -1,1 +1,1 @@
-web: gunicorn Nintino.wsgi
+web: npm start
