@@ -1,0 +1,55 @@
+#comingsoon-page {
+    text-align: center;
+}
+
+.bold-text {
+    text-shadow: 2px 3px black;
+}
+
+.comingsoon-container {
+    width: 80vw;
+    border: 5px solid black;
+    margin-bottom: 3vh;
+    color: black;
+}
+
+.container-header {
+    text-shadow: 2px 3px white;
+    text-decoration: underline;
+}
+
+#newfeatures-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#modes-container {
+    background-image: url("../../assets/chippers-background.PNG");
+    background-size: cover;
+    background-color: rgba(255,255,255,0.85);
+    background-blend-mode: lighten;
+}
+
+.container-description {
+    text-align: left;
+    margin-left: 10px;
+}
+
+.container-list {
+    text-align: left;
+}
+
+#stats-container {
+    background-image: url("../../assets/stats-background.PNG");
+    background-size: cover;
+    background-color: rgba(255,255,255,0.925);
+    background-blend-mode: lighten;
+}
+
+#games-container {
+    background-image: url("../../assets/chippers-background.PNG");
+    background-size: cover;
+    background-color: rgba(255,255,255,0.85);
+    background-blend-mode: lighten;
+}
