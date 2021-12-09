@@ -20,7 +20,7 @@ label {
     text-align: center;
     text-shadow: 2px 3px black;
     font-size: 30px;
-    margin-bottom: 70px;
+    margin-bottom: 25px;
 }
 
 input[type=submit] {
@@ -90,4 +90,5 @@ p {
 
 .errorlist {
     font-size: 20px;
+    font-weight: 900;
 }
