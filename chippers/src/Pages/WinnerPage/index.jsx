@@ -8,9 +8,11 @@ export function WinnerPage(props) {
     
     const location = useLocation();
     const history = useHistory();
+    let colour = 'white';
     let winner;
     if (location.state.winner){
         winner = location.state.winner;
+        colour = location.state.colour;
     } else {
         history.push('/')
     }
@@ -67,7 +69,7 @@ export function WinnerPage(props) {
                     let y = Math.random() * (homecanvas.height - size * 3);
                     let directionX = (Math.random() * 0.4) - 0.2;
                     let directionY = (Math.random() * 0.4) - 0.2;
-                    let color = 'rgba(250, 250, 250, 0.6)';
+                    let color = colour;
 
                     bubbleArray.push(new Bubble(x, y, directionX, directionY, size, color));
                 }

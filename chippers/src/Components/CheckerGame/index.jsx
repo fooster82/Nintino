@@ -34,7 +34,12 @@ export function CheckerGame() {
             }
         })
         socket.on("gameEnded", (winner)=>{
-            history.push("/winningPage", {winner:winner})
+            try {
+                let colour = gameData.players.find(player => player.username === winner).colour;
+                history.push("/winningPage", {winner:winner, colour: colour})
+            } catch (e) { 
+                console.warn(e);
+            }
         })     
             
     },[])
