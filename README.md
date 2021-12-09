@@ -1,6 +1,6 @@
 # Nintino
 
-**deploy_fix IS THE CURRENT WORKING BRANCH**
+**deploy_fix is the current working branch**
 
 Live deploy: https://nintino.herokuapp.com/
 
