@@ -2,7 +2,7 @@ import { socket } from "../../socket";
 import React, {useEffect} from "react";
 import { useHistory } from "react-router";
 import "./style.css";
-import rouletteWheel from "./roulette-wheel.svg"
+import rouletteWheel from "./roulette-wheel.png";
 export const Lobby=() => {
     let history = useHistory();
     const username = JSON.parse(document.getElementById('user_id').textContent);
