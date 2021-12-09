@@ -104,8 +104,8 @@ io.on("connection", socket => {
         }
     })
 
-    socket.on("end-game", (roomName, winner)=>{
-        io.to(roomName).emit("gameEnded", winner)
+    socket.on("end-game", (roomName, winner, colour)=>{
+        io.to(roomName).emit("gameEnded", winner, colour)
     })
 })
 
