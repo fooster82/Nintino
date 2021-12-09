@@ -24,11 +24,14 @@
     align-items: center;
 }
 
-#modes-container {
+#modes-image-container {
     background-image: url("../../assets/chippers-background.PNG");
     background-size: cover;
+}
+
+#modes-container {
     background-color: rgba(255,255,255,0.85);
-    background-blend-mode: lighten;
+    height: 100%;
 }
 
 .container-description {
@@ -41,15 +44,19 @@
 }
 
 #stats-container {
-    background-image: url("../../assets/stats-background.PNG");
-    background-size: cover;
     background-color: rgba(255,255,255,0.925);
-    background-blend-mode: lighten;
 }
 
 #games-container {
+    background-color: rgba(255,255,255,0.85);
+}
+
+#stats-image-container {
+    background-image: url("../../assets/stats-background.PNG");
+    background-size: cover;
+}
+
+#games-image-container {
     background-image: url("../../assets/games-background.PNG");
     background-size: cover;
-    background-color: rgba(255,255,255,0.85);
-    background-blend-mode: lighten;
 }
