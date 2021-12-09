@@ -33,8 +33,6 @@ body {
 }
 
 #comingsoon {
-    position: absolute;
-    bottom: 0;
     text-align: center; 
     text-shadow: 2px 3px black;
 }
