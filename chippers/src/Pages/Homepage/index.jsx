@@ -94,8 +94,8 @@ export function Homepage() {
                     <p className="Message">{message}</p>
                 </div>
             </div>
-
             <h4 id="comingsoon">Want a sneak peak at what we have planned for the future? Click <a id="comingsoon-link" href="games/commingsoon">here!</a></h4>
+
         </div>
     )
 }
